@@ -33,6 +33,8 @@ public:
     int getsem8();
     bool supprimer(QString id);
     bool modifier();
+    bool controlnumber(QString);
+    bool controlstring(QString);
     void setjourdiff(QString n);
     QString getjourdiff();
     CRUD(QString id,QString name ,QString difname,QString jourdiff,int sem1,int sem2,int sem3,int sem4,int sem5,int sem6,int sem7,int sem8);
