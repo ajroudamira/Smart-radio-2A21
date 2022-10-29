@@ -2,6 +2,7 @@
 #include <QSqlQuery>
 #include<QtDebug>
 #include<qobject.h>
+#include <ctype.h>
 
 CRUD::CRUD()
 {   id="";
@@ -68,7 +69,8 @@ bool CRUD::ajouter(){
                  QString Ssem6=QString::number(sem6);
                  QString Ssem7=QString::number(sem7);
                  QString Ssem8=QString::number(sem8);
-                       query.prepare("INSERT INTO PROGRAMME (ID, NAME, DIFNAME,JOURDIFF,SEM1,SEM2,SEM3,SEM4,SEM5,SEM6,SEM7,SEM8) "
+                 if (controlnumber(Ssem1) &&controlnumber(Ssem2) &&controlnumber(Ssem3) &&controlnumber(Ssem4) &&controlnumber(Ssem5) &&controlnumber(Ssem6) &&controlnumber(Ssem7) &&controlnumber(Ssem8) )
+                   {    query.prepare("INSERT INTO PROGRAMME (ID, NAME, DIFNAME,JOURDIFF,SEM1,SEM2,SEM3,SEM4,SEM5,SEM6,SEM7,SEM8) "
                                      "VALUES (:ID,:NAME,:DIFNAME,:JOURDIFF,:SEM1,:SEM2,:SEM3,:SEM4,:SEM5,:SEM6,:SEM7,:SEM8)");
                        query.bindValue(":ID", id);
                        query.bindValue(":NAME", name);
@@ -82,13 +84,8 @@ bool CRUD::ajouter(){
                        query.bindValue(":SEM6", Ssem6);
                        query.bindValue(":SEM7", Ssem7);
                        query.bindValue(":SEM8", Ssem8);
-
-                       query.exec();
-
-
-
-                return query.exec();
-}
+                 }return query.exec();
+                }
 QSqlQueryModel * CRUD::afficher(){
 QSqlQueryModel *  model=new QSqlQueryModel();
       model->setQuery("select * from PROGRAMME");
@@ -100,6 +97,7 @@ return model;
 }
 bool CRUD::supprimer(QString id){
 QSqlQuery query;
+
 query.prepare("Delete from PROGRAMME where ID=:ID");
 query.bindValue(":ID",id);
 return query.exec();
@@ -128,14 +126,27 @@ bool CRUD::modifier(){
                          query.bindValue(":SEM7", Ssem7);
                          query.bindValue(":SEM8", Ssem8);
 
-                         query.exec();
 
 
 
-                  return query.exec();
-                                          query.exec();
+
 
 
 
 
                  return query.exec();}
+bool CRUD::controlnumber(QString test){
+
+    bool ok;
+
+    int number =test.toInt(&ok);
+    number++;// it's so that qt stops showing the warning that number isnt used
+    return ok;
+
+    }
+
+
+
+
+
+
