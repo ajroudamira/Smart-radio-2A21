@@ -1,0 +1,4 @@
+<RCC>
+    <qresource prefix="/boutton"/>
+    <qresource prefix="/bouttons"/>
+</RCC>
