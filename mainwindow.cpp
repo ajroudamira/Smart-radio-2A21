@@ -34,7 +34,9 @@ QString jourdiff=ui->jourdiff->text();
 QString name=ui->le_nom->text();
 QString id=ui->le_nom_2->text();
 QString difname=ui->le_nom_3->text();
+if(jourdiff.length()<9&&name.length()<11&&difname.length()<21&&id.length()<20){
 if(!jourdiff.isEmpty()&&!name.isEmpty()&&!id.isEmpty()&&!difname.isEmpty()){
+
 if(ok1&ok2&ok3&ok4&ok5&ok6&ok7&ok8){
 CRUD C(name,id,difname,jourdiff,sem1,sem2,sem3,sem4,sem5,sem6,sem7,sem8);
 bool test=C.ajouter();
@@ -59,10 +61,16 @@ else
                             "Click Cancel to exit."), QMessageBox::Cancel);
 }
 
+
 else
     QMessageBox::critical(nullptr, QObject::tr(" OK"),
                 QObject::tr("Ajout Non Effectué: Un ou plusieurs cases sont vide.\n"
                             "Click Cancel to exit."), QMessageBox::Cancel);
+}
+
+else QMessageBox::critical(nullptr, QObject::tr(" OK"),
+                           QObject::tr("Ajout Non Effectué: Vous avez écrit plus que le maximum d'une case.\n"
+                                       "Click Cancel to exit."), QMessageBox::Cancel);
 
 
 
