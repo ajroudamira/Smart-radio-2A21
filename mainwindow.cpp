@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->le_id->setValidator( new QIntValidator(0, 999999, this));
+    ui->le_nom->setMaxLength(10);
+    ui->le_prenom->setMaxLength(10);
     ui->tableView_2->setModel(E.afficher());
 }
 

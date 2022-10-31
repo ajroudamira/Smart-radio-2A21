@@ -33,9 +33,9 @@ bool Employe ::ajouter()
           query.bindValue(":id",id_string);
           query.bindValue(":nom", nom);
           query.bindValue(":prenom", prenom);
-             query.bindValue(":fonction", fonction);
-             query.bindValue(":lieu", lieu);
-              query.bindValue(":date_naissance", date_naissance);
+          query.bindValue(":fonction", fonction);
+         query.bindValue(":lieu", lieu);
+        query.bindValue(":date_naissance", date_naissance);
            return query.exec();
 }
 bool Employe:: supprimer(int id)
@@ -69,9 +69,9 @@ bool Employe ::modifier()
                                           query.bindValue(":id",id_string);
                                           query.bindValue(":nom", nom);
                                           query.bindValue(":prenom", prenom);
-                                             query.bindValue(":fonction", fonction);
-                                             query.bindValue(":lieu", lieu);
-                                              query.bindValue(":date_naissance", date_naissance);
+                                          query.bindValue(":fonction", fonction);
+                                          query.bindValue(":lieu", lieu);
+                                          query.bindValue(":date_naissance", date_naissance);
 
                      return query.exec();}
 
