@@ -22,6 +22,7 @@ public:
     bool ajouter();
     QSqlQueryModel* afficher();
     bool supprimer(int);
+    bool modifier ();
 private:
     int id;
     QString nom, prenom,fonction,lieu ,date_naissance;

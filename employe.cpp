@@ -60,4 +60,18 @@ QSqlQueryModel* Employe::afficher()
        Model->setHeaderData(5, Qt::Horizontal,QObject:: tr("date de naissance"));
    return Model;
 }
+bool Employe ::modifier()
+{
+                       QSqlQuery query;
+                        QString id_string=QString ::number (id);
+
+    query.prepare("UPDATE EMPLOYE SET id=:id,nom=:nom,prenom=:prenom,fonction=:fonction,lieu=:lieu,date_naissance=:date_naissance WHERE id=:id ");
+                                          query.bindValue(":id",id_string);
+                                          query.bindValue(":nom", nom);
+                                          query.bindValue(":prenom", prenom);
+                                             query.bindValue(":fonction", fonction);
+                                             query.bindValue(":lieu", lieu);
+                                              query.bindValue(":date_naissance", date_naissance);
+
+                     return query.exec();}
 
