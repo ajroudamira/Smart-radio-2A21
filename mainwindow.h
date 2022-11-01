@@ -22,6 +22,8 @@ private slots:
 
     void on_modifier_clicked();
 
+    void on_tableView_2_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     Employe E;
