@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>png-clipart-statistics-chart-data-table-table-furniture-text.png</file>
+    </qresource>
+</RCC>
