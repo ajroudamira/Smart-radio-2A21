@@ -2,7 +2,10 @@
 #define SPONSOR_H
 #include <QString>
 #include<QSqlQueryModel>
-
+#include <QTableView>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QRegularExpression>
 class Sponsor
 {
 public:
@@ -24,10 +27,12 @@ public:
     QSqlQueryModel* afficher();
     bool supprimer(int);
     bool modifier();
-
-
-
-
+    QSqlQueryModel * trienom();
+    QSqlQueryModel * triead();
+    QSqlQueryModel * triemontant();
+    void recherche(QTableView * table, QString);
+    int verifieremail(QString);
+     void telechargerPDF();
 private:
     int matri,montant;
     QString nom,ad,email,duree;

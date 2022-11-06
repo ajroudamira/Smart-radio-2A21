@@ -22,6 +22,20 @@ private slots:
 
     void on_pb_modif_clicked();
 
+    void on_tabsponsor_clicked(const QModelIndex &index);
+
+    void on_trienom_clicked();
+
+    void on_triead_clicked();
+
+    void on_triemontant_clicked();
+
+    void on_pb_recher_clicked();
+
+    void on_recher_edit_textChanged(const QString &arg1);
+
+    void on_pb_pdf_clicked();
+
 private:
     Ui::MainWindow *ui;
     Sponsor S;

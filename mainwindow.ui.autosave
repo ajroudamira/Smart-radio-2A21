@@ -756,11 +756,53 @@ border-radius: 6px;</string>
         <string>Montant</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pb_pdf">
+      <widget class="QPushButton" name="pb_recher">
        <property name="geometry">
         <rect>
          <x>220</x>
          <y>50</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(150, 150, 150);
+border-radius: 6px;</string>
+       </property>
+       <property name="text">
+        <string>Recherche</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resource.qrc">
+         <normaloff>:/new/boutons/recher1.png</normaloff>:/new/boutons/recher1.png</iconset>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>910</x>
+        <y>590</y>
+        <width>251</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Imprimer Un Contrat</string>
+      </property>
+      <widget class="QPushButton" name="pb_pdf">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>40</y>
          <width>101</width>
          <height>41</height>
         </rect>
@@ -792,48 +834,6 @@ border-radius: 6px;</string>
          <width>25</width>
          <height>34</height>
         </size>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="geometry">
-       <rect>
-        <x>910</x>
-        <y>590</y>
-        <width>251</width>
-        <height>111</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Century Gothic</family>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="title">
-       <string>Imprimer Un Contrat</string>
-      </property>
-      <widget class="QPushButton" name="pb_recher">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>40</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(150, 150, 150);
-border-radius: 6px;</string>
-       </property>
-       <property name="text">
-        <string>Recherche</string>
-       </property>
-       <property name="icon">
-        <iconset resource="resource.qrc">
-         <normaloff>:/new/boutons/recher1.png</normaloff>:/new/boutons/recher1.png</iconset>
        </property>
       </widget>
      </widget>
