@@ -4,6 +4,7 @@
 #include<QIntValidator>
 #include<QObject>
 #include<QMainWindow>
+#include<QSqlQuery>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QValidator *validator = new QRegularExpressionValidator(rx, this);
             ui->le_nom->setValidator(validator);
+             ui->le_prenom->setValidator(validator);
 }
 
 MainWindow::~MainWindow()
@@ -104,4 +106,65 @@ void MainWindow::on_tableView_2_clicked(const QModelIndex &index)
          ui->le_prenom->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),2)).toString());
        //  ui->le_fonction->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),3)).toString());
           ui->le_lieu->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),4)).toString());
+}
+
+
+void MainWindow::on_trieid_clicked()
+{
+     ui->tableView_2->setModel(E.trieid());
+}
+
+void MainWindow::on_trienom_clicked()
+{
+     ui->tableView_2->setModel(E.trienom());
+}
+
+void MainWindow::on_trielieu_clicked()
+{
+    ui->tableView_2->setModel(E.trielieu());
+}
+
+void MainWindow::on_chercher_clicked()
+{
+    QString chercheBox=ui->chercheBox->currentText();
+
+    if (chercheBox == "Nom")
+     {
+     QString nom_recherche=ui->recherche->text();
+     ui->tableView_2->setModel(E.recherche(nom_recherche));}
+    else if(chercheBox == "prenom")
+    {
+        QString cherche=ui->recherche->text();
+        ui->tableView_2->setModel(E.recherche(cherche));}
+}
+
+
+
+void MainWindow::on_PDF_2_clicked()
+{
+    QSqlQuery query;
+       // QString val = ui->label_pdf->text();
+        //query.prepare("select * from employe where id='"+val+"'");
+    query.prepare("select * from employe where id");
+     E.telechargerPDF();
+        if(query.exec()){
+
+           while(query.next())
+            {
+
+    //            e.telechargerPDF(val);
+           ui->le_id->setText(query.value(0).toString());
+           ui->le_nom->setText(query.value(1).toString());
+           ui->le_prenom->setText(query.value(2).toString());
+           ui->le_lieu->setText(query.value(3).toString());
+           ui->le_fonction->setCurrentText(query.value(4).toString());
+           ui->la_date->setText(query.value(5).toString());
+       }
+        }
+        else
+            QMessageBox::information(nullptr,QObject::tr("OK"),
+                       QObject::tr("Téléchargement terminé"), QMessageBox::Cancel);
+
+
+
 }

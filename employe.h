@@ -23,6 +23,12 @@ public:
     QSqlQueryModel* afficher();
     bool supprimer(int);
     bool modifier ();
+    QSqlQueryModel * trienom();
+    QSqlQueryModel * trieid();
+    QSqlQueryModel * trielieu(); 
+   QSqlQueryModel* recherche(QString recherche);
+   QSqlQueryModel* rechercheparprenom(QString cherche);
+   void telechargerPDF();
 private:
     int id;
     QString nom, prenom,fonction,lieu ,date_naissance;
