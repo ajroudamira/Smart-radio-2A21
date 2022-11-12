@@ -63,4 +63,48 @@ QSqlQueryModel*invite::afficher()
 
  return model;
 }
+ bool invite::modifier()
+ {
+     QString CIN_string= QString::number(CIN);
+     QString Num_tel_string= QString::number(Num_tel);
+     QSqlQuery query;
+          query.prepare("INSERT INTO invite (CIN,Num_tel,nom,prenom,date_de_naissance,etat_civil,adresse)"
+                        "VALUES (:id,:a,:forename,:surname,:b,:c,:d)");
+          query.bindValue(":id", CIN);
+          query.bindValue(":a", Num_tel);
+          query.bindValue(":forename", nom);
+          query.bindValue(":surname", prenom);
+          query.bindValue(":b", date_de_naissance);
+          query.bindValue(":c", etat_civil);
+          query.bindValue(":d", adresse);
+          return query.exec();
+ }
+
+ /*QSqlQueryModel *invite::trienom()
+ {
+     QSqlQueryModel * model=new QSqlQueryModel();
+     model->setQuery("SELECT * FROM invite ORDER BY NOM");
+     model->setHeaderData(0, Qt::Horizontal,QObject:: tr("identifiant"));
+     model->setHeaderData(1, Qt::Horizontal,QObject:: tr("Num_tel"));
+     model->setHeaderData(2, Qt::Horizontal,QObject:: tr("nom"));
+     model->setHeaderData(3, Qt::Horizontal,QObject:: tr("prenom"));
+     model->setHeaderData(4, Qt::Horizontal,QObject:: tr("date_de_naissance"));
+     model->setHeaderData(5, Qt::Horizontal,QObject:: tr("etat_civil"));
+     model->setHeaderData(5, Qt::Horizontal,QObject:: tr("adresse"));
+ return model;
+ }
+ QSqlQueryModel *invite::trieid()
+ {
+     QSqlQueryModel * model=new QSqlQueryModel();
+     model->setQuery("SELECT * FROM invite ORDER BY ID");
+     model->setHeaderData(0, Qt::Horizontal,QObject:: tr("identifiant"));
+     model->setHeaderData(0, Qt::Horizontal,QObject:: tr("Num_tel"));
+     model->setHeaderData(1, Qt::Horizontal,QObject:: tr("nom"));
+     model->setHeaderData(2, Qt::Horizontal,QObject:: tr("prenom"));
+     model->setHeaderData(3, Qt::Horizontal,QObject:: tr("date_de_naissance"));
+     model->setHeaderData(4, Qt::Horizontal,QObject:: tr("etat_civil"));
+     model->setHeaderData(5, Qt::Horizontal,QObject:: tr("adresse"));
+ return model;
+ }
+}*/
 

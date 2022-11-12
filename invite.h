@@ -25,6 +25,7 @@ public:
     bool Ajouter();
     QSqlQueryModel*afficher();
     bool supprimer(int);
+    bool modifier();
 private:
     int CIN,Num_tel;
     QString nom,prenom,date_de_naissance,etat_civil,adresse;
