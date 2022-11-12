@@ -1,15 +1,131 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "crud.h"
+#include"metiers.h"
 #include <QMessageBox>
 #include <QSqlQuery>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-{
+{    QWidget::showFullScreen();
     ui->setupUi(this);
+     QString pred=QString::number(m.PREDICTION());
+     ui->Estimation->setText(pred);
     ui->tableau->setModel(c.afficher());
+    QDate date=QDate::currentDate();
+     QString date1 = "12/12/2025";
+     QDate date2 = QDate::fromString(date1,"dd/MM/yyyy");
+    ui->dateTimeEdit->setDateRange(date,date2);
+
+    // STATISTIQUE
+     QSqlQuery q1,q2,q3,q4,q5,q6;
+     qreal tot=0,c1=0,c2=0,c3=0,c4=0,c5=0;
+
+     q1.prepare("SELECT * FROM PROGRAMME");
+     q1.exec();
+
+     q2.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='HAYTHEM GIRATT'");
+     q2.exec();
+
+     q3.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='MIGALO'");
+     q3.exec();
+
+     q4.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='YASSINE KHRAIEF'");
+     q4.exec();
+
+     q5.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='MOSEEB SASSI'");
+     q5.exec();
+
+     q6.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='RAFIK HELLICHE'");
+     q6.exec();
+
+
+     while (q1.next()){tot++;}
+     while (q2.next()){c1++;}
+     while (q3.next()){c2++;}
+     while (q4.next()){c3++;}
+     while (q5.next()){c4++;}
+     while (q6.next()){c5++;}
+     c1=c1/tot;
+     c2=c2/tot;
+     c3=c3/tot;
+     c4=c4/tot;
+     c5=c5/tot;
+    QBarSet *set1 = new QBarSet("HAYTHEM GIRATT");
+    QBarSet *set2 = new QBarSet("MIGALO");
+    QBarSet *set3 = new QBarSet("YASSINE KHRAIEF");
+    QBarSet *set4 = new QBarSet("MOSEEB SASSI");
+    QBarSet *set5 = new QBarSet("RAFIK HELLICHE");
+
+    // Assign values for each bar
+     *set1 << c1 ;
+     *set2 << c2 ;
+     *set3 << c3 ;
+     *set4 << c4 ;
+     *set5 << c5 ;
+
+    // Add all sets of data to the chart as a whole
+    // 1. Bar Chart
+    QBarSeries *series = new QBarSeries();
+
+    // 2. Stacked bar chart
+    // QHorizontalStackedBarSeries *series = new QHorizontalStackedBarSeries();
+
+    series->append(set1);
+    series->append(set2);
+    series->append(set3);
+    series->append(set4);
+    series->append(set5);
+
+    // Used to define the bar chart to display, title
+    // legend,
+    QChart *chart = new QChart();
+
+    // Add the chart
+    chart->addSeries(series);
+
+    // Set title
+    chart->setTitle("STATISTIQUE");
+
+    // Define starting animation
+    // NoAnimation, GridAxisAnimations, SeriesAnimations
+    chart->setAnimationOptions(QChart::AllAnimations);
+
+    // Holds the category titles
+    QStringList categories;
+    categories << "STATISTIQUE";
+
+    // Adds categories to the axes
+    QBarCategoryAxis *axis = new QBarCategoryAxis();
+    axis->append(categories);
+    chart->createDefaultAxes();
+
+    // 1. Bar chart
+    chart->setAxisX(axis, series);
+
+    // 2. Stacked Bar chart
+
+    // Define where the legend is displayed
+    chart->legend()->setVisible(true);
+    chart->legend()->setAlignment(Qt::AlignBottom);
+
+
+    // Used to display the chart
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+     chartView->setMinimumSize(1121,601);
+    chartView->setParent(ui->tableau_2);
+
+
+    // Used to change the palette
+    QPalette pal = qApp->palette();
+
+    // Apply palette changes to the application
+    qApp->setPalette(pal);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -20,25 +136,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pb_ajouter_clicked()
 {
-    bool ok1,ok8,ok7,ok6,ok5,ok4,ok3,ok2;
-int sem1=ui->sem1->text().toInt(&ok1);
-int sem2=ui->sem2->text().toInt(&ok2);
-int sem3=ui->sem3->text().toInt(&ok3);
-int sem4=ui->sem4->text().toInt(&ok4);
-int sem5=ui->sem5->text().toInt(&ok5);
-int sem6=ui->sem6->text().toInt(&ok6);
-int sem7=ui->sem7->text().toInt(&ok7);
-int sem8=ui->sem8->text().toInt(&ok8);
 
-QString jourdiff=ui->jourdiff->text();
+
 QString name=ui->le_nom->text();
 QString id=ui->le_nom_2->text();
-QString difname=ui->le_nom_3->text();
-if(jourdiff.length()<9&&name.length()<11&&difname.length()<21&&id.length()<20){
-if(!jourdiff.isEmpty()&&!name.isEmpty()&&!id.isEmpty()&&!difname.isEmpty()){
+QString difname=ui->Nomdiff->currentText();
+QDateTime time=ui->dateTimeEdit->dateTime();
+if(name.length()<11&&difname.length()<21&&id.length()<20){
+if(!name.isEmpty()&&!id.isEmpty()&&!difname.isEmpty()){
 
-if(ok1&ok2&ok3&ok4&ok5&ok6&ok7&ok8){
-CRUD C(name,id,difname,jourdiff,sem1,sem2,sem3,sem4,sem5,sem6,sem7,sem8);
+
+CRUD C(name,id,difname,time);
+
 bool test=C.ajouter();
 if(test){
     ui->tableau->setModel(c.afficher());
@@ -47,20 +156,124 @@ if(test){
                 QObject::tr("Ajout Effectué.\n"
                             "Click Cancel to exit."), QMessageBox::Cancel);
 
+    // STATISTIQUE
+     QSqlQuery q1,q2,q3,q4,q5,q6;
+     qreal tot=0,c1=0,c2=0,c3=0,c4=0,c5=0;
+
+     q1.prepare("SELECT * FROM PROGRAMME");
+     q1.exec();
+
+     q2.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='HAYTHEM GIRATT'");
+     q2.exec();
+
+     q3.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='MIGALO'");
+     q3.exec();
+
+     q4.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='YASSINE KHRAIEF'");
+     q4.exec();
+
+     q5.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='MOSEEB SASSI'");
+     q5.exec();
+
+     q6.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='RAFIK HELLICHE'");
+     q6.exec();
+
+
+     while (q1.next()){tot++;}
+     while (q2.next()){c1++;}
+     while (q3.next()){c2++;}
+     while (q4.next()){c3++;}
+     while (q5.next()){c4++;}
+     while (q6.next()){c5++;}
+     c1=c1/tot;
+     c2=c2/tot;
+     c3=c3/tot;
+     c4=c4/tot;
+     c5=c5/tot;
+    QBarSet *set1 = new QBarSet("HAYTHEM GIRATT");
+    QBarSet *set2 = new QBarSet("MIGALO");
+    QBarSet *set3 = new QBarSet("YASSINE KHRAIEF");
+    QBarSet *set4 = new QBarSet("MOSEEB SASSI");
+    QBarSet *set5 = new QBarSet("RAFIK HELLICHE");
+
+    // Assign values for each bar
+     *set1 << c1 ;
+     *set2 << c2 ;
+     *set3 << c3 ;
+     *set4 << c4 ;
+     *set5 << c5 ;
+
+    // Add all sets of data to the chart as a whole
+    // 1. Bar Chart
+    QBarSeries *series = new QBarSeries();
+
+    // 2. Stacked bar chart
+    // QHorizontalStackedBarSeries *series = new QHorizontalStackedBarSeries();
+
+    series->append(set1);
+    series->append(set2);
+    series->append(set3);
+    series->append(set4);
+    series->append(set5);
+
+    // Used to define the bar chart to display, title
+    // legend,
+    QChart *chart = new QChart();
+
+    // Add the chart
+    chart->addSeries(series);
+
+    // Set title
+    chart->setTitle("STATISTIQUE");
+
+    // Define starting animation
+    // NoAnimation, GridAxisAnimations, SeriesAnimations
+    chart->setAnimationOptions(QChart::AllAnimations);
+
+    // Holds the category titles
+    QStringList categories;
+    categories << "STATISTIQUE";
+
+    // Adds categories to the axes
+    QBarCategoryAxis *axis = new QBarCategoryAxis();
+    axis->append(categories);
+    chart->createDefaultAxes();
+
+    // 1. Bar chart
+    chart->setAxisX(axis, series);
+
+    // 2. Stacked Bar chart
+
+    // Define where the legend is displayed
+    chart->legend()->setVisible(true);
+    chart->legend()->setAlignment(Qt::AlignBottom);
+
+
+    // Used to display the chart
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setMinimumSize(1121,601);
+    chartView->setParent(ui->tableau_2);
+
+
+    // Used to change the palette
+    QPalette pal = qApp->palette();
+
+
+
+    // Apply palette changes to the application
+    qApp->setPalette(pal);
+
+
+
 }
+
+
 else
     QMessageBox::critical(nullptr, QObject::tr(" OK"),
-                QObject::tr("Ajout Non Effectué: L'ID existe deja.\n"
-                            "Click Cancel to exit."), QMessageBox::Cancel);
-
-
-}
-else
-    QMessageBox::critical(nullptr, QObject::tr(" OK"),
-                QObject::tr("Ajout Non Effectué : les cases de nombre d'écoute sont vide ou le type de données ajouter est incompatible avec la case  .\n"
+                QObject::tr("Ajout Non Effectué: ID Exsite Déja.\n"
                             "Click Cancel to exit."), QMessageBox::Cancel);
 }
-
 
 else
     QMessageBox::critical(nullptr, QObject::tr(" OK"),
@@ -109,19 +322,14 @@ void MainWindow::on_tableau_activated(const QModelIndex &index)
     if(query.exec()){
         while(query.next())
         {
-            ui->sem1->setText(query.value(4).toString());
-            ui->sem2->setText(query.value(5).toString());
-            ui->sem3->setText(query.value(6).toString());
-            ui->sem4->setText(query.value(7).toString());
-            ui->sem5->setText(query.value(8).toString());
-            ui->sem6->setText(query.value(9).toString());
-            ui->sem7->setText(query.value(10).toString());
-            ui->sem8->setText(query.value(11).toString());
-            ui->jourdiff->setText(query.value(3).toString());
+            ui->dateTimeEdit->setDateTime(query.value(3).toDateTime());
             ui->le_nom-> setText(query.value(0).toString());
             ui->Supression ->setText(query.value(0).toString());
             ui->le_nom_2->setText(query.value(1).toString());
-            ui->le_nom_3->setText(query.value(2).toString());
+            ui->Nomdiff->setCurrentText(query.value(2).toString());
+
+
+
         }
 
     }
@@ -129,22 +337,15 @@ void MainWindow::on_tableau_activated(const QModelIndex &index)
 }
 
 void MainWindow::on_pb_modif_clicked()
-{ bool ok1,ok8,ok7,ok6,ok5,ok4,ok3,ok2;
-    int sem1=ui->sem1->text().toInt(&ok1);
-    int sem2=ui->sem2->text().toInt(&ok2);
-    int sem3=ui->sem3->text().toInt(&ok3);
-    int sem4=ui->sem4->text().toInt(&ok4);
-    int sem5=ui->sem5->text().toInt(&ok5);
-    int sem6=ui->sem6->text().toInt(&ok6);
-    int sem7=ui->sem7->text().toInt(&ok7);
-    int sem8=ui->sem8->text().toInt(&ok8);
-QString jourdiff=ui->jourdiff->text();
+{
 QString name=ui->le_nom->text();
 QString id=ui->le_nom_2->text();
-QString difname=ui->le_nom_3->text();
-if(!jourdiff.isEmpty()&&!name.isEmpty()&&!id.isEmpty()&&!difname.isEmpty()){
-if(ok1&ok2&ok3&ok4&ok5&ok6&ok7&ok8){
-CRUD C(name,id,difname,jourdiff,sem1,sem2,sem3,sem4,sem5,sem6,sem7,sem8);
+QString difname=ui->Nomdiff->currentText();
+QDateTime time=ui->dateTimeEdit->dateTime();
+CRUD C(name,id,difname,time);
+if(name.length()<11&&difname.length()<21&&id.length()<20){
+if(!name.isEmpty()&&!id.isEmpty()&&!difname.isEmpty()){
+
 bool test=C.modifier();
 if(test){
     ui->tableau->setModel(c.afficher());
@@ -153,28 +354,161 @@ if(test){
                 QObject::tr("Ajout Effectué.\n"
                             "Click Cancel to exit."), QMessageBox::Cancel);
 
+    // STATISTIQUE
+     QSqlQuery q1,q2,q3,q4,q5,q6;
+     qreal tot=0,c1=0,c2=0,c3=0,c4=0,c5=0;
+
+     q1.prepare("SELECT * FROM PROGRAMME");
+     q1.exec();
+
+     q2.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='HAYTHEM GIRATT'");
+     q2.exec();
+
+     q3.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='MIGALO'");
+     q3.exec();
+
+     q4.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='YASSINE KHRAIEF'");
+     q4.exec();
+
+     q5.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='MOSEEB SASSI'");
+     q5.exec();
+
+     q6.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='RAFIK HELLICHE'");
+     q6.exec();
+
+
+     while (q1.next()){tot++;}
+     while (q2.next()){c1++;}
+     while (q3.next()){c2++;}
+     while (q4.next()){c3++;}
+     while (q5.next()){c4++;}
+     while (q6.next()){c5++;}
+     c1=c1/tot;
+     c2=c2/tot;
+     c3=c3/tot;
+     c4=c4/tot;
+     c5=c5/tot;
+    QBarSet *set1 = new QBarSet("HAYTHEM GIRATT");
+    QBarSet *set2 = new QBarSet("MIGALO");
+    QBarSet *set3 = new QBarSet("YASSINE KHRAIEF");
+    QBarSet *set4 = new QBarSet("MOSEEB SASSI");
+    QBarSet *set5 = new QBarSet("RAFIK HELLICHE");
+
+    // Assign values for each bar
+     *set1 << c1 ;
+     *set2 << c2 ;
+     *set3 << c3 ;
+     *set4 << c4 ;
+     *set5 << c5 ;
+
+    // Add all sets of data to the chart as a whole
+    // 1. Bar Chart
+    QBarSeries *series = new QBarSeries();
+
+    // 2. Stacked bar chart
+    // QHorizontalStackedBarSeries *series = new QHorizontalStackedBarSeries();
+
+    series->append(set1);
+    series->append(set2);
+    series->append(set3);
+    series->append(set4);
+    series->append(set5);
+
+    // Used to define the bar chart to display, title
+    // legend,
+    QChart *chart = new QChart();
+
+    // Add the chart
+    chart->addSeries(series);
+
+    // Set title
+    chart->setTitle("STATISTIQUE");
+
+    // Define starting animation
+    // NoAnimation, GridAxisAnimations, SeriesAnimations
+    chart->setAnimationOptions(QChart::AllAnimations);
+
+    // Holds the category titles
+    QStringList categories;
+    categories << "STATISTIQUE";
+
+    // Adds categories to the axes
+    QBarCategoryAxis *axis = new QBarCategoryAxis();
+    axis->append(categories);
+    chart->createDefaultAxes();
+
+    // 1. Bar chart
+    chart->setAxisX(axis, series);
+
+    // 2. Stacked Bar chart
+
+    // Define where the legend is displayed
+    chart->legend()->setVisible(true);
+    chart->legend()->setAlignment(Qt::AlignBottom);
+
+
+    // Used to display the chart
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setMinimumSize(1121,601);
+    chartView->setParent(ui->tableau_2);
+
+
+    // Used to change the palette
+    QPalette pal = qApp->palette();
+
+
+    // Apply palette changes to the application
+    qApp->setPalette(pal);
+
+
 }
 else
     QMessageBox::critical(nullptr, QObject::tr(" OK"),
-                QObject::tr("Ajout Non Effectué: L'ID existe deja.\n"
+                QObject::tr("Ajout Non Effectué: L'ID n'existe pas.\n"
                             "Click Cancel to exit."), QMessageBox::Cancel);
 
 
 }
 else
     QMessageBox::critical(nullptr, QObject::tr(" OK"),
-                QObject::tr("Ajout Non Effectué : les cases de nombre d'écoute sont vide ou le type de données ajouter est incompatible avec la case  .\n"
-                            "Click Cancel to exit."), QMessageBox::Cancel);
-}
-
-else
-    QMessageBox::critical(nullptr, QObject::tr(" OK"),
-                QObject::tr("Ajout Non Effectué: Un ou plusieurs cases sont vide.\n"
+                QObject::tr("Ajout Non Effectué : Un ou plusieurs cases sont vide .\n"
                             "Click Cancel to exit."), QMessageBox::Cancel);
 
 
 
+
+}
+else QMessageBox::critical(nullptr, QObject::tr(" OK"),
+                            QObject::tr("Ajout Non Effectué: Vous avez écrit plus que le maximum d'une case.\n"
+                                        "Click Cancel to exit."), QMessageBox::Cancel);
+
+
+
+ }
+
+
+
+
+
+void MainWindow::on_pb_recher_clicked()
+{
+    QString id=ui->rechercher->text();
+    ui->tableau->setModel(m.recherche(id));
 }
 
+void MainWindow::on_pb_tri_clicked()
+{
+    if(ui->RadioID->isChecked())
+       ui->tableau->setModel(m.sort(1));
+    if(ui->RadioNom->isChecked())
+       ui->tableau->setModel( m.sort(2));
+    if(ui->Radiodiff->isChecked())
+        ui->tableau->setModel(m.sort(3));
+}
+
+void MainWindow::on_pb_pdf_clicked()
+{   m.exportpdf();
 
 
+}
