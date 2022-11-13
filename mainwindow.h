@@ -1,8 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
 #include <QMainWindow>
 #include "sponsor.h"
+#include "dialog.h"
+#include "localisation.h"
+#include "ui_localisation.h"
+#include "locawifi.h"
+#include "calendrier.h"
 namespace Ui {
 class MainWindow;
 }
@@ -30,15 +34,32 @@ private slots:
 
     void on_triemontant_clicked();
 
-    void on_pb_recher_clicked();
-
     void on_recher_edit_textChanged(const QString &arg1);
 
     void on_pb_pdf_clicked();
 
+    void on_pb_mail_clicked();
+
+    void on_checkBoxnom_clicked();
+
+    void on_checkBoxmontant_clicked();
+
+    void on_checkBoxad_clicked();
+
+    void on_pb_geo_clicked();
+
+    void on_pb_geo_2_clicked();
+
+    void on_pb_calend_clicked();
+
 private:
     Ui::MainWindow *ui;
     Sponsor S;
+    dialog *Di ;
+    Localisation *Li;
+    locawifi *l;
+calendrier *ca;
+
 };
 
 #endif // MAINWINDOW_H

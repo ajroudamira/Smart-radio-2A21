@@ -6,6 +6,11 @@
 #include <QPdfWriter>
 #include <QPainter>
 #include <QRegularExpression>
+#include "dialog.h"
+#include  <qstring.h>
+#include<QDate>
+#include<QPixmap>
+
 class Sponsor
 {
 public:
@@ -26,13 +31,14 @@ public:
     bool ajouter();
     QSqlQueryModel* afficher();
     bool supprimer(int);
-    bool modifier();
+bool modifier();
     QSqlQueryModel * trienom();
     QSqlQueryModel * triead();
     QSqlQueryModel * triemontant();
     void recherche(QTableView * table, QString);
     int verifieremail(QString);
-     void telechargerPDF();
+void telechargerPDF();
+
 private:
     int matri,montant;
     QString nom,ad,email,duree;

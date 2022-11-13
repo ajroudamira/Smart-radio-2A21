@@ -7,6 +7,12 @@
 #include <QPrintDialog>
 #include <QSqlTableModel>
 #include <QPagedPaintDevice>
+#include<qstring.h>
+#include<QDate>
+#include<QPainter>
+#include<QPixmap>
+
+
 using namespace std;
 Sponsor::Sponsor()
 {
@@ -28,6 +34,7 @@ void Sponsor:: setmontant(int montant){this->montant=montant;}
 void Sponsor::setnom(QString nom){this->nom=nom;}
 void Sponsor::setad(QString ad){this->ad=ad;}
 void Sponsor::setemail(QString email){this->email=email;}
+
 int Sponsor::verifieremail(QString email)
 {
  int temail=email.length(),iAT=0;
@@ -87,7 +94,7 @@ bool Sponsor ::modifier()
                         QString matri_string=QString ::number (matri);
                         QString montant_string = QString::number(montant);
 
-    query.prepare("UPDATE sponsor SET matri=:matri,nom=:nom,ad=:ad,email=:email,montant=:montant,duree=:duree WHERE matri=:matri ");
+    query.prepare("UPDATE SPONSOR SET matri=:matri,nom=:nom,ad=:ad,email=:email,montant=:montant,duree=:duree WHERE matri=:matri ");
                          query.bindValue(":matri",matri_string);
                          query.bindValue(":nom", nom);
                          query.bindValue(":ad", ad);
@@ -135,6 +142,8 @@ QSqlQueryModel * Sponsor::triemontant()
 
     return model;
 }
+
+
 void Sponsor::recherche(QTableView * table, QString rech)
 {
     QSqlQueryModel *model= new QSqlQueryModel();
@@ -146,43 +155,54 @@ void Sponsor::recherche(QTableView * table, QString rech)
         table->setModel(model);
         table->show();
 }
+
+
 void  Sponsor::telechargerPDF(){
-
-
-                     // QPdfWriter pdf("C:\\Users\\21699\\Desktop\\export_pdf\\export_pdf");
-                    QPdfWriter pdf("C:/Users/Jammoussi Yasmine/Desktop/export_pdf/liste des sponso");
-
-                      QPainter painter(&pdf);
-                     int i = 4000;
-                          painter.setPen(Qt::blue);
-                          painter.setFont(QFont("Arial", 30));
-                          painter.drawText(1100,1200,"LISTES DES SPONSORS");
-                          painter.setPen(Qt::black);
-                          painter.setFont(QFont("Arial",14));
-                          painter.drawRect(100,100,7300,2600);
-                          painter.drawRect(0,3000,9600,500);
-                          painter.setFont(QFont("Arial",11));
-                          painter.drawText(200,3300,"Nom De L'Entreprise");
-                          painter.drawText(1300,3300,"Matricule fiscale");
-                          painter.drawText(2200,3300,"Adresse");
-                          painter.drawText(3200,3300,"Email");
-                          painter.drawText(3200,3300,"Montant");
-                          painter.drawText(3200,3300,"Durée");
+    QPdfWriter pdf("C:/Users/Jammoussi Yasmine/Desktop/export_pdf/liste des sponso.pdf");
+    QPainter painter(&pdf);
+                          painter.setFont(QFont("Century Gothic",35,QFont::Bold));
+                         painter.drawText(2000,1500,"LISTES DES SPONSORS");
 
 
 
-                          QSqlQuery query;
-                          query.prepare("select * from sponsor");
-                          query.exec();
-                          while (query.next())
-                          {
-                              painter.drawText(200,i,query.value(0).toString());
-                              painter.drawText(1300,i,query.value(1).toString());
-                              painter.drawText(2200,i,query.value(2).toString());
-                              painter.drawText(3200,i,query.value(3).toString());
-                              painter.drawText(5300,i,query.value(4).toString());
-                              painter.drawText(6700,i,query.value(5).toString());
+
+                        int i = 4000;
+
+                        QPixmap pixmapl("C:/Users/Jammoussi Yasmine/Documents/untitled/logoradio.png");
+                        QPixmap pixmapl2("C:/Users/Jammoussi Yasmine/Documents/untitled/logoEsprit.png");
+
+                             painter.setPen(Qt::red);
+                         painter.setPen(Qt::black);
+                         painter.drawRect(0,2700,9600,500);
+                         painter.setFont(QFont("Calibri",14,QFont::Bold));
+                         painter.drawText(200,3000,"NOM");
+                         painter.drawText(1800,3000,"MATRI");
+                         painter.drawText(3100,3000,"ADRESSE");
+                         painter.drawText(4900,3000,"EMAIL");
+                         painter.drawText(7000,3000,"MONTANT");
+                         painter.drawText(8600,3000,"DUREE");
+                         painter.drawPixmap(50,50,900,900,pixmapl);
+                         painter.drawPixmap(7900,140,1500,500,pixmapl2);
+
+                         QString s = QDate::currentDate().toString();
+                         painter.setFont(QFont("Calibri",15,QFont::Bold));
+                         painter.drawText(4000,2000,s);
+
+                         QSqlQuery query;
+
+                         query.prepare("select * from sponsor");
+                         query.exec();
+                         while (query.next())
+                         {
+                                painter.setFont(QFont("Calibri",13));
+                             painter.drawText(200,i,query.value(1).toString());
+                             painter.drawText(1800,i,query.value(0).toString());
+                             painter.drawText(3200,i,query.value(2).toString());
+                             painter.drawText(4900,i,query.value(3).toString());
+                             painter.drawText(7100,i,query.value(4).toString());
+                             painter.drawText(8600,i,query.value(5).toString());
 
 
-                             i = i + 500;
-                          }}
+
+                            i = i + 500;
+                         }}
