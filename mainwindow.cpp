@@ -4,20 +4,24 @@
 #include"metiers.h"
 #include <QMessageBox>
 #include <QSqlQuery>
+#include<QMetaObject>
+#include<QtEvents>
+#include <QMediaPlayer>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {    QWidget::showFullScreen();
-    ui->setupUi(this);
-     QString pred=QString::number(m.PREDICTION());
-     ui->Estimation->setText(pred);
+
+     ui->setupUi(this);
+
+      ui->tableau->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableau->setModel(c.afficher());
     QDate date=QDate::currentDate();
      QString date1 = "12/12/2025";
      QDate date2 = QDate::fromString(date1,"dd/MM/yyyy");
     ui->dateTimeEdit->setDateRange(date,date2);
-
     // STATISTIQUE
      QSqlQuery q1,q2,q3,q4,q5,q6;
      qreal tot=0,c1=0,c2=0,c3=0,c4=0,c5=0;
@@ -37,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
      q5.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='MOSEEB SASSI'");
      q5.exec();
 
-     q6.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='RAFIK HELLICHE'");
+     q6.prepare("SELECT * FROM PROGRAMME WHERE DIFNAME='RAFIK HELLICH'");
      q6.exec();
 
 
@@ -103,7 +107,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // 1. Bar chart
     chart->setAxisX(axis, series);
-
     // 2. Stacked Bar chart
 
     // Define where the legend is displayed
@@ -115,7 +118,7 @@ MainWindow::MainWindow(QWidget *parent)
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-     chartView->setMinimumSize(1121,601);
+     chartView->setMinimumSize(1121,481);
     chartView->setParent(ui->tableau_2);
 
 
@@ -252,7 +255,7 @@ if(test){
     // Used to display the chart
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->setMinimumSize(1121,601);
+    chartView->setMinimumSize(1121,481);
     chartView->setParent(ui->tableau_2);
 
 
@@ -450,7 +453,7 @@ if(test){
     // Used to display the chart
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->setMinimumSize(1121,601);
+    chartView->setMinimumSize(1121,481);
     chartView->setParent(ui->tableau_2);
 
 
@@ -511,4 +514,109 @@ void MainWindow::on_pb_pdf_clicked()
 {   m.exportpdf();
 
 
+}
+
+void MainWindow::on_pushButton_clicked()
+{   QString test=ui->test->text();
+    if(m.PREDICTION(test)!=-1){
+     QString pred=QString::number(int(m.PREDICTION(test)));
+     ui->Estimation->setText(pred);
+     ui->estimation->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+     ui->estimation->setModel(m.Affichage(test));
+
+}
+    else QMessageBox::critical(nullptr, QObject::tr(" NOT OK"),
+                               QObject::tr("Nom Du Base Est Incorrecte Réessayer.\n"
+                                           "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+
+
+
+
+void MainWindow::on_audio_pressed()
+{
+   /* QAudioEncoderSettings audioSettings;
+    audioSettings.setCodec("audio/amr");
+    audioSettings.setQuality(QMultimedia::HighQuality);
+
+    audioRecorder->setEncodingSettings(audioSettings);
+
+    audioRecorder->setOutputLocation(QUrl::fromLocalFile("C:/Users/essay/Desktop/lenna/test.amr"));
+    const QStringList inputs = audioRecorder->audioInputs();
+    QString selectedInput = audioRecorder->defaultAudioInput();
+ audioRecorder->record();
+    for (const QString &input : inputs) {
+    QString description = audioRecorder->audioInputDescription(input);
+    // show descriptions to user and allow selection
+    selectedInput = input;}
+*/
+}
+
+void MainWindow::on_audio_released()
+{
+    audioRecorder->stop();
+}
+
+void MainWindow::on_audio_clicked(bool checked)
+{   checked=on_audio_clicked();
+    if(checked){
+    QString s1=ui->audioname->text();
+    QString s="C:/Users/essay/Desktop/lenna/"+s1;
+    QAudioEncoderSettings audioSettings;
+    audioSettings.setCodec("audio/amr");
+    audioSettings.setQuality(QMultimedia::HighQuality);
+
+    audioRecorder->setEncodingSettings(audioSettings);
+
+    audioRecorder->setOutputLocation(QUrl::fromLocalFile(s));
+    const QStringList inputs = audioRecorder->audioInputs();
+    QString selectedInput = audioRecorder->defaultAudioInput();
+ audioRecorder->record();
+
+    for (const QString &input : inputs) {
+    QString description = audioRecorder->audioInputDescription(input);
+    // show descriptions to user and allow selection
+    selectedInput = input;}}
+}
+
+bool MainWindow::on_audio_clicked()
+{
+  return true;
+}
+
+void MainWindow::on_stop_clicked()
+{
+    audioRecorder->stop();
+}
+
+
+
+void MainWindow::on_play_clicked()
+{    QString s1=ui->audioname->text();
+     QString s="C:/Users/essay/Desktop/lenna/"+s1+".wav";
+
+      {
+          sourceFile.setFileName(s);
+          sourceFile.open(QIODevice::ReadOnly);
+
+          QAudioFormat format;
+          // Set up the format, eg.
+          format.setSampleRate(25000);
+          format.setChannelCount(2);
+          format.setSampleSize(16);
+          format.setCodec("audio/pcm");
+          format.setByteOrder(QAudioFormat::LittleEndian);
+          format.setSampleType(QAudioFormat::UnSignedInt);
+
+          QAudioDeviceInfo info(QAudioDeviceInfo::defaultOutputDevice());
+          if (!info.isFormatSupported(format)) {
+              qWarning() << "Raw audio format not supported by backend, cannot play audio.";
+              return;
+          }
+
+          audio = new QAudioOutput(format, this);
+          connect(audio, SIGNAL(stateChanged(QAudio::State)), this, SLOT(handleStateChanged(QAudio::State)));
+          audio->start(&sourceFile);
+      }
 }
