@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Localisation</class>
  <widget class="QDialog" name="Localisation">
@@ -5,13 +6,116 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>878</width>
+    <height>686</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>831</width>
+     <height>651</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Century Gothic</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(151, 175, 227)</string>
+   </property>
+   <property name="title">
+    <string>Geolocalisation</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>220</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Matricule Fiscale</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pic">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>30</y>
+      <width>601</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(235, 235, 235);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pb_maps">
+    <property name="geometry">
+     <rect>
+      <x>32</x>
+      <y>390</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(235, 186, 61);
+border-radius: 6px;</string>
+    </property>
+    <property name="text">
+     <string>Itinerary</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>320</y>
+      <width>104</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_dest">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>270</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>

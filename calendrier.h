@@ -1,8 +1,11 @@
 #ifndef CALENDRIER_H
 #define CALENDRIER_H
-
+#include <QMessageBox>
+#include<QObject>
+#include<QString>
+#include<QSqlQuery>
 #include <QDialog>
-
+#include <QCalendarWidget>
 namespace Ui {
 class calendrier;
 }
@@ -14,6 +17,9 @@ class calendrier : public QDialog
 public:
     explicit calendrier(QWidget *parent = nullptr);
     ~calendrier();
+
+private slots:
+
 
 private:
     Ui::calendrier *ui;

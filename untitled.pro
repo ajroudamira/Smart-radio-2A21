@@ -1,7 +1,8 @@
-QT       += core gui
+
+QT       += core gui sql network multimedia multimediawidgets charts printsupport widgets axcontainer
 QT += gui
 QT+= sql
-QT += printsupport
+QT += printsupport network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -18,17 +19,31 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    calendrier.cpp \
     connection.cpp \
+    dialog.cpp \
+    localisation.cpp \
+    locawifi.cpp \
     main.cpp \
     mainwindow.cpp \
+    smtp.cpp \
     sponsor.cpp
 
 HEADERS += \
+    calendrier.h \
     connection.h \
+    dialog.h \
+    localisation.h \
+    locawifi.h \
     mainwindow.h \
+    smtp.h \
     sponsor.h
 
 FORMS += \
+    calendrier.ui \
+    dialog.ui \
+    localisation.ui \
+    locawifi.ui \
     mainwindow.ui
 
 # Default rules for deployment.
