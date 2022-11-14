@@ -2,6 +2,11 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "connection.h"
+#include<QMainWindow>
+#include<QWidget>
+#include <QDebug>
+#include <QtWidgets/QApplication>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

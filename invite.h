@@ -1,8 +1,28 @@
 #ifndef INVITE_H
 #define INVITE_H
-
 #include <QString>
 #include <QSqlQueryModel>
+#include<QWidget>
+#include <QTableView>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QRegularExpression>
+using namespace std;
+
+/*#include <QtCharts/QPieSlice>
+#include <QtCharts/QChartView>
+#include <QtWidgets/QMainWindow>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QLegend>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QHorizontalStackedBarSeries>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QCategoryAxis>
+#include <QtCharts/QPieSeries>
+#include <QDebug>
+#include <qdebug.h>
+QT_CHARTS_USE_NAMESPACE*/
 class invite
 {
 public:
@@ -26,10 +46,11 @@ public:
     QSqlQueryModel*afficher();
     bool supprimer(int);
     bool modifier();
+    bool telechargerPDF();
+    bool rechercher(int);
 private:
     int CIN,Num_tel;
     QString nom,prenom,date_de_naissance,etat_civil,adresse;
-
 };
 
 #endif // INVITE_H
