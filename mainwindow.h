@@ -5,6 +5,7 @@
 #include<QPrinter>
 #include<QPrintDialog>
 #include"employe.h"
+#include"statistique.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -36,8 +37,15 @@ private slots:
 
     void on_PDF_2_clicked();
 
+    void on_seconnecter_clicked();
+
+    void on_seconnecter_2_clicked();
+
+    void on_Send_clicked();
+
 private:
     Ui::MainWindow *ui;
     Employe E;
+    statistique *s;
 };
 #endif // MAINWINDOW_H
