@@ -15,7 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
 {    QWidget::showFullScreen();
 
      ui->setupUi(this);
-
+      ui->stop->setDisabled(true);
+          ui->audio->setEnabled(true);
       ui->tableau->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableau->setModel(c.afficher());
     QDate date=QDate::currentDate();
@@ -24,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->dateTimeEdit->setDateRange(date,date2);
     // STATISTIQUE
      QSqlQuery q1,q2,q3,q4,q5,q6;
-     qreal tot=0,c1=0,c2=0,c3=0,c4=0,c5=0;
+     int tot=0,c1=0,c2=0,c3=0,c4=0,c5=0;
 
      q1.prepare("SELECT * FROM PROGRAMME");
      q1.exec();
@@ -51,11 +52,11 @@ MainWindow::MainWindow(QWidget *parent)
      while (q4.next()){c3++;}
      while (q5.next()){c4++;}
      while (q6.next()){c5++;}
-     c1=c1/tot;
+    /* c1=c1/tot;
      c2=c2/tot;
      c3=c3/tot;
      c4=c4/tot;
-     c5=c5/tot;
+     c5=c5/tot;*/
     QBarSet *set1 = new QBarSet("HAYTHEM GIRATT");
     QBarSet *set2 = new QBarSet("MIGALO");
     QBarSet *set3 = new QBarSet("YASSINE KHRAIEF");
@@ -161,7 +162,7 @@ if(test){
 
     // STATISTIQUE
      QSqlQuery q1,q2,q3,q4,q5,q6;
-     qreal tot=0,c1=0,c2=0,c3=0,c4=0,c5=0;
+     int tot=0,c1=0,c2=0,c3=0,c4=0,c5=0;
 
      q1.prepare("SELECT * FROM PROGRAMME");
      q1.exec();
@@ -188,11 +189,11 @@ if(test){
      while (q4.next()){c3++;}
      while (q5.next()){c4++;}
      while (q6.next()){c5++;}
-     c1=c1/tot;
+     /*c1=c1/tot;
      c2=c2/tot;
      c3=c3/tot;
      c4=c4/tot;
-     c5=c5/tot;
+     c5=c5/tot;*/
     QBarSet *set1 = new QBarSet("HAYTHEM GIRATT");
     QBarSet *set2 = new QBarSet("MIGALO");
     QBarSet *set3 = new QBarSet("YASSINE KHRAIEF");
@@ -322,6 +323,7 @@ void MainWindow::on_tableau_activated(const QModelIndex &index)
     QString id=ui->tableau->model()->data(index).toString();
     QSqlQuery query;
     query.prepare("select * from PROGRAMME where ID='"+id+"'");
+
     if(query.exec()){
         while(query.next())
         {
@@ -359,7 +361,7 @@ if(test){
 
     // STATISTIQUE
      QSqlQuery q1,q2,q3,q4,q5,q6;
-     qreal tot=0,c1=0,c2=0,c3=0,c4=0,c5=0;
+     int tot=0,c1=0,c2=0,c3=0,c4=0,c5=0;
 
      q1.prepare("SELECT * FROM PROGRAMME");
      q1.exec();
@@ -386,11 +388,11 @@ if(test){
      while (q4.next()){c3++;}
      while (q5.next()){c4++;}
      while (q6.next()){c5++;}
-     c1=c1/tot;
+    /* c1=c1/tot;
      c2=c2/tot;
      c3=c3/tot;
      c4=c4/tot;
-     c5=c5/tot;
+     c5=c5/tot;*/
     QBarSet *set1 = new QBarSet("HAYTHEM GIRATT");
     QBarSet *set2 = new QBarSet("MIGALO");
     QBarSet *set3 = new QBarSet("YASSINE KHRAIEF");
@@ -496,24 +498,30 @@ else QMessageBox::critical(nullptr, QObject::tr(" OK"),
 
 void MainWindow::on_pb_recher_clicked()
 {
-    QString id=ui->rechercher->text();
-    ui->tableau->setModel(m.recherche(id));
+    QString s=ui->rechercher->text();
+
+    if(ui->rech->currentText()=="Nom de Programme")
+       ui->tableau->setModel(m.recherche(1,s));
+    else if(ui->rech->currentText()=="ID de Programme")
+       ui->tableau->setModel( m.recherche(2,s));
+   else if(ui->rech->currentText()=="Nom du Diffuseur")
+        ui->tableau->setModel(m.recherche(3,s));
 }
 
 void MainWindow::on_pb_tri_clicked()
 {
-    if(ui->RadioID->isChecked())
+    if(ui->tri->currentText()=="Nom de Programme")
        ui->tableau->setModel(m.sort(1));
-    if(ui->RadioNom->isChecked())
+    else if(ui->tri->currentText()=="ID de Programme")
        ui->tableau->setModel( m.sort(2));
-    if(ui->Radiodiff->isChecked())
+    else if(ui->tri->currentText()=="Nom du Diffuseur")
         ui->tableau->setModel(m.sort(3));
 }
 
 void MainWindow::on_pb_pdf_clicked()
-{   m.exportpdf();
-
-
+{   QString s;
+    s=ui->PDF->text();
+    m.exportpdf(s);
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -534,29 +542,9 @@ void MainWindow::on_pushButton_clicked()
 
 
 
-void MainWindow::on_audio_pressed()
-{
-   /* QAudioEncoderSettings audioSettings;
-    audioSettings.setCodec("audio/amr");
-    audioSettings.setQuality(QMultimedia::HighQuality);
 
-    audioRecorder->setEncodingSettings(audioSettings);
 
-    audioRecorder->setOutputLocation(QUrl::fromLocalFile("C:/Users/essay/Desktop/lenna/test.amr"));
-    const QStringList inputs = audioRecorder->audioInputs();
-    QString selectedInput = audioRecorder->defaultAudioInput();
- audioRecorder->record();
-    for (const QString &input : inputs) {
-    QString description = audioRecorder->audioInputDescription(input);
-    // show descriptions to user and allow selection
-    selectedInput = input;}
-*/
-}
 
-void MainWindow::on_audio_released()
-{
-    audioRecorder->stop();
-}
 
 void MainWindow::on_audio_clicked(bool checked)
 {   checked=on_audio_clicked();
@@ -581,12 +569,14 @@ void MainWindow::on_audio_clicked(bool checked)
 }
 
 bool MainWindow::on_audio_clicked()
-{
+{ ui->audio->setDisabled(true);
+   ui->stop->setEnabled(true);
   return true;
 }
 
 void MainWindow::on_stop_clicked()
-{
+{   ui->stop->setDisabled(true);
+    ui->audio->setEnabled(true);
     audioRecorder->stop();
 }
 
@@ -619,4 +609,9 @@ void MainWindow::on_play_clicked()
           connect(audio, SIGNAL(stateChanged(QAudio::State)), this, SLOT(handleStateChanged(QAudio::State)));
           audio->start(&sourceFile);
       }
+}
+
+void MainWindow::on_pb_modif_2_clicked()
+{
+    ui->tableau->setModel(c.afficher());
 }
