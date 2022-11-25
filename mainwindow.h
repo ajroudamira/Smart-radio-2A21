@@ -43,9 +43,7 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void on_audio_pressed();
 
-    void on_audio_released();
 
     void on_audio_clicked(bool checked);
 
@@ -77,6 +75,8 @@ private slots:
                 break;
         }
     }
+    void on_pb_modif_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     CRUD c;
