@@ -152,3 +152,17 @@ model->setHeaderData(5, Qt::Horizontal,QObject:: tr("date de naissance"));
  model->setHeaderData(6, Qt::Horizontal,QObject:: tr("motdepasse"));
 return model;
 }
+QSqlQueryModel*Employe::rechercheparfonction(QString chercher)
+{
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery("SELECT* FROM EMPLOYE where prenom like '"+chercher+"%'");
+    model->setHeaderData(0, Qt::Horizontal,QObject:: tr("identifiant"));
+    model->setHeaderData(1, Qt::Horizontal,QObject:: tr("Nom"));
+    model->setHeaderData(2, Qt::Horizontal,QObject:: tr("prenom"));
+    model->setHeaderData(3, Qt::Horizontal,QObject:: tr("fonction"));
+    model->setHeaderData(4, Qt::Horizontal,QObject:: tr("lieu de travail"));
+    model->setHeaderData(5, Qt::Horizontal,QObject:: tr("date de naissance"));
+     model->setHeaderData(6, Qt::Horizontal,QObject:: tr("motdepasse"));
+    return model;
+}
+

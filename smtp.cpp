@@ -1,4 +1,4 @@
-#include "smtp.h"
+/*  #include "smtp.h"
 #include "mainwindow.h"
 Smtp::Smtp( const QString &user, const QString &pass, const QString &host, int port, int timeout )
 {
@@ -34,7 +34,7 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
 
 
     message.append( "--frontier\n" );
-    //message.append( "Content-Type: text/html\n\n" );  //Uncomment this for HTML formating, coment the line below
+    message.append( "Content-Type: text/html\n\n" );  //Uncomment this for HTML formating, coment the line below
     message.append( "Content-Type: text/plain\n\n" );
     message.append(body);
     message.append("\n\n");
@@ -248,4 +248,4 @@ void Smtp::readyRead()
                       response = "";
 }
 
-
+*/

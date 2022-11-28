@@ -15,11 +15,64 @@
 #include<QDialog>
 #include<smtp.h>
 #include"statistique.h"
+#include <QDebug>
+#include <QMessageBox>
+#include "QIntValidator"
+#include <QDateEdit>
+#include <QPlainTextEdit>
+#include <QPrinter>
+//#include <QPrinterInfo>
+//#include <QPrintDialog>
+#include <QTextStream>
+#include <QPainter>
+#include <QTextStream>
+#include <QFileDialog>
+#include <QTextDocument>
+#include <QtPrintSupport/QPrinter>
+#include <QFileDialog>
+#include <QTextDocument>
+#include <strstream>
+#include <QSystemTrayIcon>
+#include <QRegExpValidator>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QGuiApplication>
+//#include <QQmlApplicationEngine>
+#include <QTcpSocket>
+//#include <QQuickItem>
+#include <QSystemTrayIcon>
+#include <QIntValidator>
+#include<arduino.h>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    int ret=A.connect_arduino(); // lancer la connexion à arduino
+        switch(ret){
+        case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+            break;
+        case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+           break;
+        case(-1):qDebug() << "arduino is not available";
+        }
+         QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+         //le slot update_label suite à la reception du signal readyRead (reception des données).
+
+   //chat
+        mSocket=new QTcpSocket(this);
+            mSocket->connectToHost("localhost",2000);
+            if (mSocket->waitForConnected(3000))
+            {
+                ui->plainTextEdit->appendPlainText("se connecter correctement");
+            }
+            else
+            {
+                ui->plainTextEdit->appendPlainText("connected");
+            }
+        //    connect(mSocket,SIGNAL(readyRead()),this,SLOT(leer()));
+            // fin chat
     ui->le_id->setValidator( new QIntValidator(0, 999999, this));
     ui->le_nom->setMaxLength(10);
     ui->le_prenom->setMaxLength(10);
@@ -31,12 +84,16 @@ MainWindow::MainWindow(QWidget *parent)
              ui->le_prenom->setValidator(validator);
 
 
-
              s = new statistique();
               s->setWindowTitle("statistique des employes");
-              s->Statistique();
+              s->choix_bar();
                s->setMinimumSize(800,800);
              s->show();
+
+
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -147,16 +204,23 @@ void MainWindow::on_trielieu_clicked()
 
 void MainWindow::on_chercher_clicked()
 {
-    QString chercheBox=ui->chercheBox->currentText();
+    QString chercherbox=ui->chercheBox->currentText();
 
-    if (chercheBox == "Nom")
+    if (chercherbox == "Nom")
      {
      QString nom_recherche=ui->recherche->text();
-     ui->tableView_2->setModel(E.recherche(nom_recherche));}
-    else if( chercheBox == "prenom")
-    {
-        QString cherche=ui->recherche->text();
-        ui->tableView_2->setModel(E.recherche(cherche));}
+     ui->tableView_2->setModel(E.recherche(nom_recherche));
+     }
+    else if(chercherbox == "prenom")
+     {
+     QString prenom_recherche=ui->recherche->text();
+     ui->tableView_2->setModel(E.recherche(prenom_recherche));
+     }
+    else if (chercherbox == "fonction")
+     {
+     QString fonction_recherche=ui->recherche->text();
+     ui->tableView_2->setModel(E.recherche(fonction_recherche));
+     }
 }
 
 
@@ -252,46 +316,51 @@ void MainWindow::on_seconnecter_clicked()
 }
 
 
+
 void MainWindow::on_seconnecter_2_clicked()
 {
-    QTabWidget TabWidget;
-       connect(ui->tabWidget, SIGNAL(clicked()), this, SLOT(viewData));
-       QString username=ui->username->text();
-               QString password = ui->motdepasse->text();
-               if(username == "mohamed" && password == "8888")
-               { QMessageBox::information(this, "Login", "Username and password is correct");
-              //connect(ui->MainWindow->page_3, SIGNAL(on_connecter_clicked()), this, SLOT(viewData));
-               ui->tabWidget->setCurrentIndex(1);
-               }
-                   //hide(); mainwindow = new MainWindow(this); mainwindow->show(); }
-                   else if(username == "aziz" && password == "107")
-               { QMessageBox::information(this, "Login", "Username and password is correct");
-                  ui->tabWidget->setCurrentIndex(2);
-               }
-                       //hide(); mainwindow = new MainWindow(this); mainwindow->show(); }
-                       else if(username == "molka" && password == "22222")
-                       { QMessageBox::information(this, "Login", "Username and password is correct");
-                  ui->tabWidget->setCurrentIndex(3);
-               }
-                           //hide(); mainwindow = new MainWindow(this); mainwindow->show(); }
-                           else if(username == "ranim" && password == "545")
-                           { QMessageBox::information(this, "Login", "Username and password is correct");
-                  ui->tabWidget->setCurrentIndex(4);
-               }
-                               //hide(); mainwindow = new MainWindow(this); mainwindow->show(); }
-                               else if(username == "khalil" && password == "9999")
-                               { QMessageBox::information(this, "Login", "Username and password is correct");
-                  ui->tabWidget->setCurrentIndex(5);
-               }
-                                   //hide(); mainwindow = new MainWindow(this); mainwindow->show(); }
-                                           else { QMessageBox::warning(this,"Login", "Username and password is not correct"); }
+    QString nom=ui->username->text();
+    int id=ui->motdepasse->text().toInt();
+
+    QSqlQuery qry;
+           qry.prepare("select * from EMPLOYE where Nom='"+nom+"'and id='"+id+"'");
+
+           if (qry.exec())
+
+    QMessageBox::information(nullptr,QObject::tr("login done"),
+                                            QObject::tr("login succesfully \n"
+                                                        "Click Cancel to exit."),QMessageBox::Cancel);
+           else
+
+           QMessageBox::information(nullptr,QObject::tr("login done"),
+                                                   QObject::tr("login succesfully \n"
+                                                               "Click Cancel to exit."),QMessageBox::Cancel);
 }
 
 
 
-void MainWindow::on_Send_clicked()
+ void MainWindow::update_label()
 {
-    QString from = ui->le_from->text();
+    data=A.read_from_arduino();
+
+    if(data!="")
+
+       {
+        ui->username->setText("mohamed"); // si les données reçues de arduino via la liaison série sont égales à 1
+        ui->motdepasse->setText("8888");
+       }
+
+
+    else if (data=="0")
+
+        ui->username->setText("OFF");
+    A.write_to_arduino("k");
+
+}
+
+  /*void MainWindow::on_Send_clicked()
+{
+  QString from = ui->le_from->text();
           QString to = ui->le_to->text();
           QString subject = ui->le_subject->text();
           QString password =ui->le_password->text();
@@ -302,8 +371,8 @@ void MainWindow::on_Send_clicked()
 
 
              smtp->sendMail(from, to, subject, textemail);
-   }
- //  void MainWindow::mailSent(QString nettoyer)
+   }*/
+ // void MainWindow::mailSent(QString nettoyer)
   // {
 
       // if(nettoyer == "Message sent")
@@ -315,3 +384,22 @@ void MainWindow::on_Send_clicked()
      //  ui->le_password->clear();
 //}
 
+/*
+void MainWindow::on_pushButton_clicked()
+{
+    mSocket->write(ui->lineEdit->text().toLatin1().data(),ui->lineEdit->text().size());
+
+        ui->plainTextEdit_2->appendPlainText(ui->lineEdit->text());
+
+        ui->lineEdit->clear();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    mSocket->write(ui->lineEdit_2->text().toLatin1().data(),ui->lineEdit_2->text().size());
+
+        ui->plainTextEdit->appendPlainText(ui->lineEdit_2->text());
+
+        ui->lineEdit_2->clear();
+}
+*/

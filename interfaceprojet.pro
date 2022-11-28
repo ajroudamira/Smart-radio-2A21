@@ -1,8 +1,11 @@
-QT       += core gui printsupport network widgets multimediawidgets axcontainer
+QT       += core gui sql network multimedia multimediawidgets charts printsupport widgets axcontainer serialport
+QT       += gui
 QT       +=sql
 QT       += printsupport network
 QT       += printsupport
 QT       +=charts
+QT       += network
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -19,7 +22,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    authentification.cpp \
+    arduino.cpp \
     connection.cpp \
     employe.cpp \
     main.cpp \
@@ -28,7 +31,7 @@ SOURCES += \
     statistique.cpp
 
 HEADERS += \
-    authentification.h \
+    arduino.h \
     connection.h \
     employe.h \
     mainwindow.h \

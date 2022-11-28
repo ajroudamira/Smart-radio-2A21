@@ -1,10 +1,22 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-#include<QMessageBox>
-#include <QMainWindow>
+#ifndef DIALOG_H
+#define DIALOG_H
+
+#include <QDialog>
+
+#include"employe.h"
+#include<QIntValidator>
+#include<QObject>
+#include<QMainWindow>
+#include<QSqlQuery>
+#include <QDesktopServices>
 #include<QPrinter>
 #include<QPrintDialog>
-#include"employe.h"
+#include <QPrintPreviewDialog>
+#include <QPdfWriter>
+#include <QPainter>
+#include<QUrl>
+#include<QDialog>
+#include<smtp.h>
 #include"statistique.h"
 #include <QDebug>
 #include <QMessageBox>
@@ -28,23 +40,17 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QGuiApplication>
-//#include <QQmlApplicationEngine>
-#include <QTcpSocket>
-//#include <QQuickItem>
-#include <QSystemTrayIcon>
-#include <QIntValidator>
-#include<arduino.h>
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+namespace Ui {
+class Dialog;
+}
 
-class MainWindow : public QMainWindow
+class Dialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit Dialog(QWidget *parent = nullptr);
+    ~Dialog();
 
 private slots:
     void on_ajouter_clicked();
@@ -53,7 +59,7 @@ private slots:
 
     void on_modifier_clicked();
 
-    void on_tableView_2_clicked(const QModelIndex &index);
+    void on_tableView_2_activated(const QModelIndex &index);
 
     void on_trieid_clicked();
 
@@ -65,23 +71,10 @@ private slots:
 
     void on_PDF_2_clicked();
 
-    void on_seconnecter_clicked();
-
-    void on_seconnecter_2_clicked();
-    void update_label();
-
-  //  void on_Send_clicked();
-
-  //  void on_pushButton_clicked();
-
-    //void on_pushButton_2_clicked();
-
 private:
-    Ui::MainWindow *ui;
-    Employe E;
+    Ui::Dialog *ui;
     statistique *s;
-    QTcpSocket*mSocket;
-    arduino A;
-    QByteArray data;
+    Employe E;
 };
-#endif // MAINWINDOW_H
+
+#endif // DIALOG_H

@@ -1,3 +1,4 @@
+/*
 #ifndef SMTP_H
 #define SMTP_H
 #include <QtNetwork/QAbstractSocket>
@@ -58,3 +59,4 @@ private:
 
 };
 #endif
+*/

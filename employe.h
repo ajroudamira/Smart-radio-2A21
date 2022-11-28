@@ -30,6 +30,8 @@ public:
     QSqlQueryModel * trielieu(); 
    QSqlQueryModel* recherche(QString recherche);
    QSqlQueryModel* rechercheparprenom(QString cherche);
+   QSqlQueryModel* rechercheparfonction(QString chercher);
+
 
 private:
     int id;
