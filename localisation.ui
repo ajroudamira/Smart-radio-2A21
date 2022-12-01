@@ -73,7 +73,7 @@
    <widget class="QPushButton" name="pb_maps">
     <property name="geometry">
      <rect>
-      <x>32</x>
+      <x>40</x>
       <y>390</y>
       <width>121</width>
       <height>41</height>
