@@ -19,7 +19,7 @@
      <rect>
       <x>40</x>
       <y>-10</y>
-      <width>1271</width>
+      <width>1291</width>
       <height>1001</height>
      </rect>
     </property>
@@ -581,7 +581,7 @@ rgb(255, 255, 255);</string>
         <x>130</x>
         <y>490</y>
         <width>741</width>
-        <height>451</height>
+        <height>461</height>
        </rect>
       </property>
       <property name="font">
@@ -626,7 +626,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>380</y>
+         <y>390</y>
          <width>81</width>
          <height>41</height>
         </rect>
@@ -658,7 +658,7 @@ border-radius: 6px;</string>
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>100</y>
+         <y>110</y>
          <width>641</width>
          <height>261</height>
         </rect>
@@ -735,7 +735,7 @@ border-radius: 6px;</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>390</y>
+         <y>400</y>
          <width>83</width>
          <height>20</height>
         </rect>
@@ -753,7 +753,7 @@ border-radius: 6px;</string>
        <property name="geometry">
         <rect>
          <x>430</x>
-         <y>390</y>
+         <y>400</y>
          <width>101</width>
          <height>20</height>
         </rect>
@@ -771,7 +771,7 @@ border-radius: 6px;</string>
        <property name="geometry">
         <rect>
          <x>290</x>
-         <y>390</y>
+         <y>400</y>
          <width>91</width>
          <height>20</height>
         </rect>
@@ -789,7 +789,7 @@ border-radius: 6px;</string>
        <property name="geometry">
         <rect>
          <x>590</x>
-         <y>380</y>
+         <y>390</y>
          <width>81</width>
          <height>41</height>
         </rect>
@@ -828,7 +828,7 @@ border-radius: 6px;</string>
       <property name="geometry">
        <rect>
         <x>910</x>
-        <y>720</y>
+        <y>710</y>
         <width>251</width>
         <height>101</height>
        </rect>
@@ -1019,8 +1019,8 @@ border-radius: 6px;</string>
      <widget class="QLabel" name="qrcode_2">
       <property name="geometry">
        <rect>
-        <x>920</x>
-        <y>480</y>
+        <x>940</x>
+        <y>470</y>
         <width>251</width>
         <height>221</height>
        </rect>
