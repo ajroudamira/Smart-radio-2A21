@@ -707,9 +707,14 @@ border-radius: 6px;</string>
         <rect>
          <x>200</x>
          <y>50</y>
-         <width>101</width>
+         <width>111</width>
          <height>41</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
        </property>
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
