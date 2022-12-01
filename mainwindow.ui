@@ -737,7 +737,7 @@ border-radius: 6px;</string>
        </property>
        <property name="font">
         <font>
-         <pointsize>9</pointsize>
+         <pointsize>10</pointsize>
         </font>
        </property>
        <property name="text">
@@ -747,15 +747,15 @@ border-radius: 6px;</string>
       <widget class="QCheckBox" name="checkBoxmontant">
        <property name="geometry">
         <rect>
-         <x>410</x>
+         <x>420</x>
          <y>390</y>
-         <width>83</width>
+         <width>101</width>
          <height>20</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <pointsize>9</pointsize>
+         <pointsize>10</pointsize>
         </font>
        </property>
        <property name="text">
@@ -767,13 +767,13 @@ border-radius: 6px;</string>
         <rect>
          <x>280</x>
          <y>390</y>
-         <width>83</width>
+         <width>91</width>
          <height>20</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <pointsize>9</pointsize>
+         <pointsize>10</pointsize>
         </font>
        </property>
        <property name="text">
