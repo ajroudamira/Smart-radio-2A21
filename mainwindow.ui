@@ -658,9 +658,9 @@ border-radius: 6px;</string>
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>110</y>
+         <y>100</y>
          <width>631</width>
-         <height>251</height>
+         <height>271</height>
         </rect>
        </property>
       </widget>
