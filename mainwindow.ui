@@ -51,7 +51,7 @@
         <x>100</x>
         <y>90</y>
         <width>871</width>
-        <height>381</height>
+        <height>371</height>
        </rect>
       </property>
       <property name="font">
@@ -142,7 +142,7 @@
        <property name="geometry">
         <rect>
          <x>100</x>
-         <y>310</y>
+         <y>300</y>
          <width>141</width>
          <height>41</height>
         </rect>
@@ -259,7 +259,7 @@ border-radius: 6px;</string>
        <property name="geometry">
         <rect>
          <x>430</x>
-         <y>310</y>
+         <y>300</y>
          <width>141</width>
          <height>41</height>
         </rect>
@@ -337,7 +337,7 @@ border-radius: 6px;</string>
        <property name="geometry">
         <rect>
          <x>580</x>
-         <y>310</y>
+         <y>300</y>
          <width>131</width>
          <height>41</height>
         </rect>
