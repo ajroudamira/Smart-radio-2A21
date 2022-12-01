@@ -38,6 +38,8 @@ bool modifier();
     void recherche(QTableView * table, QString);
     int verifieremail(QString);
 void telechargerPDF();
+void telechargerexcel();
+bool existance(QString);
 
 private:
     int matri,montant;

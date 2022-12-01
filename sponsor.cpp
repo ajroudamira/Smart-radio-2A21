@@ -11,6 +11,7 @@
 #include<QDate>
 #include<QPainter>
 #include<QPixmap>
+#include<QMessageBox>
 
 
 using namespace std;
@@ -206,3 +207,26 @@ void  Sponsor::telechargerPDF(){
 
                             i = i + 500;
                          }}
+bool Sponsor::existance(QString id)
+ {
+     QMessageBox msgBox;
+     QSqlQuery query;
+     int count=0;
+     query.prepare("SELECT * FROM sponsor WHERE matri= ?");
+     query.addBindValue(matri);
+     if(query.exec() )
+     {
+         while (query.next())
+         {
+             count ++;
+         }
+         if(count==1)
+         {
+             //msgBox.setText("numero deja existe");
+             //msgBox.exec();
+             return 0;
+         }
+
+     }
+     return 1;
+ }

@@ -6,7 +6,9 @@
 #include "localisation.h"
 #include "ui_localisation.h"
 #include "locawifi.h"
-#include "calendrier.h"
+#include "scenario1arduino.h"
+#include<QDebug>
+
 namespace Ui {
 class MainWindow;
 }
@@ -28,13 +30,7 @@ private slots:
 
     void on_tabsponsor_clicked(const QModelIndex &index);
 
-    void on_trienom_clicked();
-
-    void on_triead_clicked();
-
-    void on_triemontant_clicked();
-
-    void on_recher_edit_textChanged(const QString &arg1);
+   void on_recher_edit_textChanged(const QString &arg1);
 
     void on_pb_pdf_clicked();
 
@@ -50,7 +46,13 @@ private slots:
 
     void on_pb_geo_2_clicked();
 
-    void on_pb_calend_clicked();
+//void ChercherFromArduino();
+
+
+
+    void on_pb_stat_clicked();
+
+void update();
 
 private:
     Ui::MainWindow *ui;
@@ -58,7 +60,9 @@ private:
     dialog *Di ;
     Localisation *Li;
     locawifi *l;
-calendrier *ca;
+
+       // QByteArray d;
+        scenario1arduino a;
 
 };
 

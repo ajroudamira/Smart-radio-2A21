@@ -60,7 +60,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>to</string>
+      <string>Matricule</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="le_subject">
