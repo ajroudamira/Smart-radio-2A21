@@ -705,7 +705,7 @@ border-radius: 6px;</string>
       <widget class="QPushButton" name="pb_recher">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>210</x>
          <y>50</y>
          <width>111</width>
          <height>41</height>
