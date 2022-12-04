@@ -1,9 +1,12 @@
 QT       += core gui
 QT+= sql
+QT       += core gui charts
+QT += multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 CONFIG += console
+
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -19,12 +22,14 @@ SOURCES += \
     connexion.cpp \
     crud.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    metiers.cpp
 
 HEADERS += \
     connexion.h \
     crud.h \
-    mainwindow.h
+    mainwindow.h \
+    metiers.h
 
 FORMS += \
     mainwindow.ui
