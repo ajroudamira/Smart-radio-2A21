@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1669</width>
-    <height>1467</height>
+    <width>1696</width>
+    <height>1183</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>140</x>
       <y>0</y>
       <width>1401</width>
       <height>1181</height>
@@ -70,8 +70,8 @@
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>80</y>
+         <x>130</x>
+         <y>70</y>
          <width>181</width>
          <height>21</height>
         </rect>
@@ -93,8 +93,8 @@
       <widget class="QLabel" name="label_2">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>150</y>
+         <x>120</x>
+         <y>160</y>
          <width>191</width>
          <height>21</height>
         </rect>
@@ -116,8 +116,8 @@
       <widget class="QLabel" name="label_3">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>220</y>
+         <x>600</x>
+         <y>70</y>
          <width>181</width>
          <height>21</height>
         </rect>
@@ -166,8 +166,8 @@
       <widget class="QLineEdit" name="le_nom">
        <property name="geometry">
         <rect>
-         <x>240</x>
-         <y>70</y>
+         <x>340</x>
+         <y>60</y>
          <width>131</width>
          <height>31</height>
         </rect>
@@ -178,28 +178,11 @@
          <pointsize>9</pointsize>
         </font>
        </property>
-      </widget>
-      <widget class="QLabel" name="label_5">
-       <property name="geometry">
-        <rect>
-         <x>410</x>
-         <y>110</y>
-         <width>161</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Century Gothic</family>
-         <pointsize>11</pointsize>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-         <underline>true</underline>
-        </font>
-       </property>
        <property name="text">
-        <string>Jour De Diffusion</string>
+        <string>211JMT</string>
+       </property>
+       <property name="placeholderText">
+        <string/>
        </property>
       </widget>
       <widget class="QPushButton" name="pb_modif">
@@ -236,8 +219,8 @@
       <widget class="QLineEdit" name="le_nom_2">
        <property name="geometry">
         <rect>
-         <x>240</x>
-         <y>140</y>
+         <x>340</x>
+         <y>160</y>
          <width>131</width>
          <height>31</height>
         </rect>
@@ -251,28 +234,100 @@
        <property name="text">
         <string/>
        </property>
+       <property name="placeholderText">
+        <string extracomment="Saisie ici"/>
+       </property>
       </widget>
-      <widget class="QLineEdit" name="le_nom_3">
+      <widget class="QPushButton" name="supprimer">
        <property name="geometry">
         <rect>
-         <x>240</x>
-         <y>210</y>
-         <width>131</width>
-         <height>31</height>
+         <x>500</x>
+         <y>310</y>
+         <width>141</width>
+         <height>41</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>Century Gothic</family>
          <pointsize>9</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(225, 225, 225)</string>
+       </property>
+       <property name="text">
+        <string>Supprimer</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>:/new/boutons/supp2.jpg</normaloff>:/new/boutons/supp2.jpg</iconset>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="Nomdiff">
+       <property name="geometry">
+        <rect>
+         <x>840</x>
+         <y>60</y>
+         <width>171</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>8</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(225, 225, 225)</string>
+       </property>
+       <item>
+        <property name="text">
+         <string> &lt;Choisir Une Option&gt;</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>MIGALO</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HAYTHEM GIRATT</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>YASSINE KHRAIEF</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>RAFIK HELLICH</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>MOSEEB SASSI</string>
+        </property>
+       </item>
       </widget>
       <widget class="QLabel" name="label_7">
        <property name="geometry">
         <rect>
-         <x>410</x>
-         <y>180</y>
+         <x>600</x>
+         <y>160</y>
          <width>161</width>
          <height>21</height>
         </rect>
@@ -291,364 +346,15 @@
         <string>Temp De Diffusion</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="jourdiff">
+      <widget class="QDateTimeEdit" name="dateTimeEdit">
        <property name="geometry">
         <rect>
-         <x>590</x>
-         <y>100</y>
-         <width>131</width>
-         <height>31</height>
+         <x>840</x>
+         <y>160</y>
+         <width>194</width>
+         <height>22</height>
         </rect>
        </property>
-       <property name="font">
-        <font>
-         <family>Century Gothic</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-      </widget>
-      <widget class="QTimeEdit" name="tempdiff">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>170</y>
-         <width>131</width>
-         <height>31</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_4">
-       <property name="geometry">
-        <rect>
-         <x>740</x>
-         <y>20</y>
-         <width>481</width>
-         <height>281</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Century Gothic</family>
-         <pointsize>12</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="title">
-        <string>Nombre D'Écoute Du 2 Mois Precedent </string>
-       </property>
-       <widget class="QLineEdit" name="sem4">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>200</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-         </font>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_14">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>150</y>
-          <width>161</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>7eme sem</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="sem3">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>150</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-         </font>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_12">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>50</y>
-          <width>161</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>5eme Sem</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_8">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>161</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>1er Sem</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_9">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>100</y>
-          <width>161</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>2eme Sem</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="sem6">
-        <property name="geometry">
-         <rect>
-          <x>330</x>
-          <y>100</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-         </font>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="sem7">
-        <property name="geometry">
-         <rect>
-          <x>330</x>
-          <y>150</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-         </font>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_11">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>200</y>
-          <width>161</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>4eme Sem</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="sem8">
-        <property name="geometry">
-         <rect>
-          <x>330</x>
-          <y>200</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-         </font>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="sem1">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>50</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-         </font>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_13">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>100</y>
-          <width>161</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>6eme sem</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="sem2">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>100</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-         </font>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_15">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>200</y>
-          <width>161</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>8eme sem</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="sem5">
-        <property name="geometry">
-         <rect>
-          <x>330</x>
-          <y>50</y>
-          <width>131</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-         </font>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_10">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>150</y>
-          <width>161</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Century Gothic</family>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="text">
-         <string>3eme Sem</string>
-        </property>
-       </widget>
       </widget>
      </widget>
      <widget class="QLabel" name="label_6">
@@ -681,9 +387,9 @@
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>10</x>
         <y>470</y>
-        <width>781</width>
+        <width>761</width>
         <height>541</height>
        </rect>
       </property>
@@ -731,7 +437,7 @@ color: rgb(45, 45, 45)</string>
          <normaloff>:/new/boutons/recher1.png</normaloff>:/new/boutons/recher1.png</iconset>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="rechercher">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -761,8 +467,8 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
       <widget class="QPushButton" name="pb_tri">
        <property name="geometry">
         <rect>
-         <x>450</x>
-         <y>480</y>
+         <x>350</x>
+         <y>470</y>
          <width>81</width>
          <height>41</height>
         </rect>
@@ -789,11 +495,21 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
          <normaloff>:/new/boutons/tri2.png</normaloff>:/new/boutons/tri2.png</iconset>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_2">
+      <widget class="QTableView" name="tableau">
        <property name="geometry">
         <rect>
-         <x>550</x>
-         <y>480</y>
+         <x>70</x>
+         <y>110</y>
+         <width>621</width>
+         <height>351</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="rech">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>50</y>
          <width>171</width>
          <height>41</height>
         </rect>
@@ -819,66 +535,69 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
        </item>
        <item>
         <property name="text">
-         <string>Matricule Fiscale</string>
+         <string>Nom de Programme</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Date Du Contrat</string>
+         <string>ID de Programme</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Montant</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Durée De La Publicité</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Nom De L'Entreprise</string>
+         <string>Nom du Diffuseur</string>
         </property>
        </item>
       </widget>
-      <widget class="QTableView" name="tableau">
+      <widget class="QComboBox" name="tri">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>120</y>
-         <width>731</width>
-         <height>351</height>
+         <x>460</x>
+         <y>470</y>
+         <width>171</width>
+         <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>8</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(225, 225, 225)</string>
+       </property>
+       <item>
+        <property name="text">
+         <string> &lt;Choisir Une Option&gt;</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Nom de Programme</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ID de Programme</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Nom du Diffuseur</string>
+        </property>
+       </item>
       </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_8">
-      <property name="geometry">
-       <rect>
-        <x>940</x>
-        <y>530</y>
-        <width>391</width>
-        <height>391</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Century Gothic</family>
-        <pointsize>11</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="title">
-       <string>Supression Des Programme</string>
-      </property>
-      <widget class="QPushButton" name="supprimer">
+      <widget class="QPushButton" name="pb_modif_2">
        <property name="geometry">
         <rect>
-         <x>140</x>
-         <y>290</y>
+         <x>580</x>
+         <y>50</y>
          <width>141</width>
          <height>41</height>
         </rect>
@@ -892,134 +611,27 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
         </font>
        </property>
        <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
+        <cursorShape>ArrowCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(225, 225, 225)</string>
        </property>
        <property name="text">
-        <string>Supprimer</string>
+        <string>Actualiser</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>:/new/boutons/supp2.jpg</normaloff>:/new/boutons/supp2.jpg</iconset>
+        <iconset resource="resource.qrc">
+         <normaloff>:/new/boutons/modifier.png</normaloff>:/new/boutons/modifier.png</iconset>
        </property>
       </widget>
-      <widget class="QLabel" name="label_24">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>80</y>
-         <width>161</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Century Gothic</family>
-         <pointsize>11</pointsize>
-         <weight>75</weight>
-         <italic>false</italic>
-         <bold>true</bold>
-         <underline>true</underline>
-        </font>
-       </property>
-       <property name="text">
-        <string>ID De Programme</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="Supression">
-       <property name="geometry">
-        <rect>
-         <x>140</x>
-         <y>160</y>
-         <width>131</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Century Gothic</family>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>Tab 2</string>
-     </attribute>
-     <widget class="QGroupBox" name="groupBox_5">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>40</y>
-        <width>611</width>
-        <height>351</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Century Gothic</family>
-        <pointsize>12</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="title">
-       <string>Statistique</string>
-      </property>
-      <widget class="QGroupBox" name="groupBox_6">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>611</width>
-         <height>351</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Century Gothic</family>
-         <pointsize>12</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="title">
-        <string>Statistique</string>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_7">
-      <property name="geometry">
-       <rect>
-        <x>770</x>
-        <y>40</y>
-        <width>611</width>
-        <height>351</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Century Gothic</family>
-        <pointsize>12</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="title">
-       <string>Prevision D'écoute</string>
-      </property>
      </widget>
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>500</y>
+        <x>910</x>
+        <y>520</y>
         <width>341</width>
-        <height>91</height>
+        <height>221</height>
        </rect>
       </property>
       <property name="font">
@@ -1036,8 +648,8 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
       <widget class="QPushButton" name="pb_pdf">
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>30</y>
+         <x>120</x>
+         <y>120</y>
          <width>101</width>
          <height>41</height>
         </rect>
@@ -1070,7 +682,377 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
         </size>
        </property>
       </widget>
+      <widget class="QLineEdit" name="PDF">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>60</y>
+         <width>251</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string/>
+       </property>
+      </widget>
      </widget>
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="geometry">
+       <rect>
+        <x>800</x>
+        <y>770</y>
+        <width>541</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Audio Recording</string>
+      </property>
+      <widget class="QLineEdit" name="audioname">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>60</y>
+         <width>251</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="audio">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>140</y>
+         <width>93</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>START</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="stop">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>140</y>
+         <width>101</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>STOP</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="play">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>140</y>
+         <width>93</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>PLAY</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+     <widget class="QTableView" name="tableau_2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>30</y>
+        <width>1121</width>
+        <height>481</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>530</y>
+        <width>891</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Estimation</string>
+      </property>
+      <widget class="QLineEdit" name="Estimation">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>330</y>
+         <width>131</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>18</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string extracomment="Saisie ici"/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="test">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>50</y>
+         <width>191</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string extracomment="show boobs"/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>60</y>
+         <width>93</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Appliquer</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="estimation">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>100</y>
+         <width>801</width>
+         <height>221</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="acceptDrops">
+        <bool>true</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_16">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>241</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+         <underline>true</underline>
+        </font>
+       </property>
+       <property name="text">
+        <string>Ecrire Le Nom Du Tableau :</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_17">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>330</y>
+         <width>521</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+         <underline>true</underline>
+        </font>
+       </property>
+       <property name="text">
+        <string>Estimation De Nombre D'ecoute Pour La Prochaine Diffusion </string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_8">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>1200</y>
+      <width>391</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>Supression Des Programme</string>
+    </property>
+    <widget class="QLabel" name="label_24">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>80</y>
+       <width>161</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+       <underline>true</underline>
+      </font>
+     </property>
+     <property name="text">
+      <string>ID De Programme</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="Supression">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>160</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
     </widget>
    </widget>
   </widget>
@@ -1079,7 +1061,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1669</width>
+     <width>1696</width>
      <height>26</height>
     </rect>
    </property>
