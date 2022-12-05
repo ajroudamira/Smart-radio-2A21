@@ -24,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     arduino.cpp \
     connection.cpp \
+    dialog.cpp \
     employe.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -33,12 +34,14 @@ SOURCES += \
 HEADERS += \
     arduino.h \
     connection.h \
+    dialog.h \
     employe.h \
     mainwindow.h \
     smtp.h \
     statistique.h
 
 FORMS += \
+    dialog.ui \
     mainwindow.ui \
     statistique.ui
 

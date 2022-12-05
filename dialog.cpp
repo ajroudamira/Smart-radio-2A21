@@ -1,5 +1,8 @@
 #include "dialog.h"
 #include "ui_dialog.h"
+
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include"employe.h"
 #include<QIntValidator>
 #include<QObject>
@@ -37,22 +40,53 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QGuiApplication>
+//#include <QQmlApplicationEngine>
+#include <QTcpSocket>
+//#include <QQuickItem>
+#include <QSystemTrayIcon>
+#include <QIntValidator>
+#include<arduino.h>
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
-    s = new statistique();
-     s->setWindowTitle("statistique des employes");
-     s->choix_bar();
-      s->setMinimumSize(800,800);
-    s->show();
+
+    ui->le_id->setValidator( new QIntValidator(0, 999999, this));
+    ui->le_nom->setMaxLength(10);
+    ui->le_prenom->setMaxLength(10);
+    ui->tableView_2->setModel(E.afficher());
+    QRegularExpression rx("^[A-Za-z]+$");//controle de saisie.
+
+    QValidator *validator = new QRegularExpressionValidator(rx, this);
+            ui->le_nom->setValidator(validator);
+             ui->le_prenom->setValidator(validator);
+
+
+             s = new statistique();
+              s->setWindowTitle("statistique des employes");
+              s->choix_bar();
+               s->setMinimumSize(800,800);
+             s->show();
+
+
+
 }
 
 Dialog::~Dialog()
 {
     delete ui;
 }
+
+
+
+
+
+
+
+
+
+
 
 void Dialog::on_ajouter_clicked()
 {
@@ -77,7 +111,6 @@ void Dialog::on_ajouter_clicked()
          QMessageBox::critical(nullptr, QObject::tr("not OK"),
                      QObject::tr("ajout failed.\n"
                                  "Click Cancel to exit."), QMessageBox::Cancel);
-
 }
 
 
@@ -97,8 +130,8 @@ void Dialog::on_supprimer_clicked()
         QMessageBox::critical(nullptr, QObject::tr("not OK"),
                     QObject::tr("suppression failed.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
-
 }
+
 
 
 void Dialog::on_modifier_clicked()
@@ -123,15 +156,10 @@ void Dialog::on_modifier_clicked()
         else
             QMessageBox::critical(nullptr, QObject::tr("not OK"),
                         QObject::tr("modification failed.\n"
-                                    "Click Cancel to exit."), QMessageBox::Cancel);}
+                                    "Click Cancel to exit."), QMessageBox::Cancel);
+}
 
-
-
-
-
-
-
-void Dialog::on_tableView_2_activated(const QModelIndex &index)
+void Dialog::on_tableView_2_clicked(const QModelIndex &index)
 {
     ui->le_id->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),0)).toString());
         ui->le_nom->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),1)).toString());
@@ -144,20 +172,23 @@ void Dialog::on_tableView_2_activated(const QModelIndex &index)
 
 void Dialog::on_trieid_clicked()
 {
-     ui->tableView_2->setModel(E.trieid());
+  ui->tableView_2->setModel(E.trieid());
 }
 
 
 void Dialog::on_trienom_clicked()
 {
-      ui->tableView_2->setModel(E.trienom());
+     ui->tableView_2->setModel(E.trienom());
 }
 
 
 void Dialog::on_trielieu_clicked()
 {
-      ui->tableView_2->setModel(E.trielieu());
+    ui->tableView_2->setModel(E.trielieu());
 }
+
+
+
 
 
 void Dialog::on_chercher_clicked()

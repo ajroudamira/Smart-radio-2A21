@@ -47,25 +47,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_ajouter_clicked();
 
-    void on_supprimer_clicked();
-
-    void on_modifier_clicked();
-
-    void on_tableView_2_clicked(const QModelIndex &index);
-
-    void on_trieid_clicked();
-
-    void on_trienom_clicked();
-
-    void on_trielieu_clicked();
-
-    void on_chercher_clicked();
-
-    void on_PDF_2_clicked();
-
-    void on_seconnecter_clicked();
 
     void on_seconnecter_2_clicked();
     void update_label();
@@ -78,8 +60,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Employe E;
-    statistique *s;
+
     QTcpSocket*mSocket;
     arduino A;
     QByteArray data;

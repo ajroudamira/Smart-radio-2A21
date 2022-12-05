@@ -43,6 +43,7 @@
 #include <QSystemTrayIcon>
 #include <QIntValidator>
 #include<arduino.h>
+#include<dialog.h>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -61,7 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
          //le slot update_label suite à la reception du signal readyRead (reception des données).
 
    //chat
-        mSocket=new QTcpSocket(this);
+     /*   mSocket=new QTcpSocket(this);
             mSocket->connectToHost("localhost",2000);
             if (mSocket->waitForConnected(3000))
             {
@@ -89,7 +90,7 @@ MainWindow::MainWindow(QWidget *parent)
               s->choix_bar();
                s->setMinimumSize(800,800);
              s->show();
-
+*/
 
 
 
@@ -102,186 +103,9 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_ajouter_clicked()
-{
-   int id=ui->le_id->text().toInt();
-   QString nom=ui->le_nom->text();
-   QString prenom=ui->le_prenom->text();
-  QString fonction=ui->le_fonction->currentText();
-   QString lieu=ui->le_lieu->text();
-   QString date_naissance=ui->la_date->text();
-   QString motdepasse=ui->mdp->text();
-    Employe E(id,nom,prenom,fonction,lieu,date_naissance,motdepasse);
-    bool test=E.ajouter();
-    if (test)
-    {
-        ui->tableView_2->setModel(E.afficher());
-                QMessageBox::information(nullptr, QObject::tr("OK"),
-                            QObject::tr("ajout effectué.\n"
-                                        "Click Cancel to exit."), QMessageBox::Cancel);
-
-    }
-    else
-        QMessageBox::critical(nullptr, QObject::tr("not OK"),
-                    QObject::tr("ajout failed.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-
-}
 
 
-void MainWindow::on_supprimer_clicked()
-{
-    int id=ui->le_id->text().toInt();
-    bool test=E.supprimer(id);
-    if (test)
-    {
-        ui->tableView_2->setModel(E.afficher());
-                QMessageBox::information(nullptr, QObject::tr("OK"),
-                            QObject::tr("suppression effectué.\n"
-                                        "Click Cancel to exit."), QMessageBox::Cancel);
-
-    }
-    else
-        QMessageBox::critical(nullptr, QObject::tr("not OK"),
-                    QObject::tr("suppression failed.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-
-}
-
-void MainWindow::on_modifier_clicked()
-{
-    int id=ui->le_id->text().toInt();
-    QString nom=ui->le_nom->text();
-    QString prenom=ui->le_prenom->text();
-    QString fonction=ui->le_fonction->currentText();
-    QString lieu=ui->le_lieu->text();
-    QString date_naissance=ui->la_date->text();
-    QString motdepasse=ui->mdp->text();
-     Employe E(id,nom,prenom,fonction,lieu,date_naissance,motdepasse);
-    bool test=E.modifier();
-
-        if(test){
-            ui->tableView_2->setModel(E.afficher());
-                    QMessageBox::information(nullptr, QObject::tr("OK"),
-                                QObject::tr("modification effectué.\n"
-                                            "Click Cancel to exit."), QMessageBox::Cancel);
-
-        }
-        else
-            QMessageBox::critical(nullptr, QObject::tr("not OK"),
-                        QObject::tr("modification failed.\n"
-                                    "Click Cancel to exit."), QMessageBox::Cancel);}
-
-
-
-
-
-void MainWindow::on_tableView_2_clicked(const QModelIndex &index)
-{
-    ui->le_id->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),0)).toString());
-        ui->le_nom->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),1)).toString());
-         ui->le_prenom->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),2)).toString());
-       //  ui->le_fonction->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),3)).toString());
-          ui->le_lieu->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),4)).toString());
-            ui->mdp->setText(ui->tableView_2->model()->data(ui->tableView_2->model()->index(index.row(),5)).toString());
-}
-
-
-void MainWindow::on_trieid_clicked()
-{
-     ui->tableView_2->setModel(E.trieid());
-}
-
-void MainWindow::on_trienom_clicked()
-{
-     ui->tableView_2->setModel(E.trienom());
-}
-
-void MainWindow::on_trielieu_clicked()
-{
-    ui->tableView_2->setModel(E.trielieu());
-}
-
-void MainWindow::on_chercher_clicked()
-{
-    QString chercherbox=ui->chercheBox->currentText();
-
-    if (chercherbox == "Nom")
-     {
-     QString nom_recherche=ui->recherche->text();
-     ui->tableView_2->setModel(E.recherche(nom_recherche));
-     }
-    else if(chercherbox == "prenom")
-     {
-     QString prenom_recherche=ui->recherche->text();
-     ui->tableView_2->setModel(E.recherche(prenom_recherche));
-     }
-    else if (chercherbox == "fonction")
-     {
-     QString fonction_recherche=ui->recherche->text();
-     ui->tableView_2->setModel(E.recherche(fonction_recherche));
-     }
-}
-
-
-
-void MainWindow::on_PDF_2_clicked()
-{
-    QString ach=ui->le_id->text()+".pdf";
-            QPdfWriter pdf("C:/Users/user/Desktop/gestion_employe/generer pdf/pdf.pdf"+ach);
-
-                              QPainter painter(&pdf);
-                             int i = 4000;
-                                  painter.setPen(Qt::red);
-                                  painter.setFont(QFont("Impact", 30));
-                                  painter.drawText(2200,1400,"Liste des employes "+ui->le_id->text());
-                                  painter.setPen(Qt::black);
-                                  painter.setFont(QFont("impact", 50));
-                                  painter.drawRect(0,3000,9600,500);
-                                  painter.setFont(QFont("impact", 11));
-                                  painter.drawText(200,3300,"id");
-                                  painter.drawText(1200,3300,"Nom");
-                                  painter.drawText(2400,3300,"prenom");
-                                  painter.drawText(4200,3300,"fonction");
-                                  painter.drawText(5300,3300,"lieu de travail");
-                                  painter.drawText(6900,3300,"date de naissance");
-                                   painter.drawText(8500,3300,"motdepasse");
-
-
-                                  QSqlQuery query;
-                                  query.prepare("select * from EMPLOYE");
-                                  query.exec();
-                                  painter.setFont(QFont("Arial",9));
-                                  while (query.next())
-                                  {
-                                      painter.drawText(200,i,query.value(0).toString());
-                                      painter.drawText(1200,i,query.value(1).toString());
-                                      painter.drawText(2400,i,query.value(2).toString());
-                                      painter.drawText(4000,i,query.value(3).toString());
-                                      painter.drawText(6000,i,query.value(4).toString());
-                                      painter.drawText(7000,i,query.value(5).toString());
-                                      painter.drawText(8400,i,query.value(6).toString());
-                                      painter.drawText(8400,i,query.value(7).toString());
-
-
-
-                                     i = i + 500;
-                                  }
-                                  int reponse = QMessageBox::question(this, "Génerer PDF", "<PDF Enregistré>...Vous Voulez Affichez Le PDF ?", QMessageBox::Yes |  QMessageBox::No);
-                                      if (reponse == QMessageBox::Yes)
-                                      {
-                                          QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Users/user/Desktop/gestion_employe/generer pdf/pdf.pdf"+ach));
-
-                                          painter.end();
-                                      }
-                                      if (reponse == QMessageBox::No)
-                                      {
-                                           painter.end();
-                                      }
-
-
-}
-void MainWindow::on_seconnecter_clicked()
+/*void MainWindow::on_seconnecter_clicked()
 { QTabWidget TabWidget;
     connect(ui->tabWidget, SIGNAL(clicked()), this, SLOT(viewData));
     QString username=ui->username2->text();
@@ -315,48 +139,129 @@ void MainWindow::on_seconnecter_clicked()
                                         else { QMessageBox::warning(this,"Login", "Username and password is not correct"); }
 }
 
-
+*/
 
 void MainWindow::on_seconnecter_2_clicked()
 {
-    QString nom=ui->username->text();
-    int id=ui->motdepasse->text().toInt();
+    QString nom,prenom;
+           nom=ui->username->text();
+         prenom=ui->motdepasse->text();
 
-    QSqlQuery qry;
-           qry.prepare("select * from EMPLOYE where Nom='"+nom+"'and id='"+id+"'");
+           QSqlQuery qry;
+           qry.prepare("select * from EMPLOYE where nom='"+nom+"'and prenom='"+prenom+"'");
+         if(qry.exec())
+                 {
+              int i=0;
+               while(qry.next())
+               {
 
-           if (qry.exec())
-
-    QMessageBox::information(nullptr,QObject::tr("login done"),
+                  i++;
+               }
+               if(i==1)
+               {
+                   QMessageBox::information(nullptr,QObject::tr("login done"),
                                             QObject::tr("login succesfully \n"
                                                         "Click Cancel to exit."),QMessageBox::Cancel);
-           else
 
-           QMessageBox::information(nullptr,QObject::tr("login done"),
-                                                   QObject::tr("login succesfully \n"
-                                                               "Click Cancel to exit."),QMessageBox::Cancel);
+
+                   Dialog d;
+                 d.setModal(true);
+                   d.exec();
+                   }
+
+
+                 else
+                    {
+                         QMessageBox::critical(nullptr,QObject::tr("login failed"),
+                                                 QObject::tr("FAILD TO connected ..........  \n"
+                                                              "erreur erreur inaccesible \n"
+                                                             "vous n etez pas en registrer dans notre base de donner"
+                                                             "Click Cancel to exit."),QMessageBox::Cancel);}
+
+}
 }
 
-
-
+QString ch="";
  void MainWindow::update_label()
 {
-    data=A.read_from_arduino();
+     QSqlQuery query;
+          QByteArray data="";
+        //QByteArray nom ;
+          QString nom="" ,prenom="";
 
-    if(data!="")
-
-       {
-        ui->username->setText("mohamed"); // si les données reçues de arduino via la liaison série sont égales à 1
-        ui->motdepasse->setText("8888");
-       }
+         data=A.read_from_arduino();
+          qDebug() <<  " data is " <<data;
+          ch=ch+data;
+          qDebug() <<  " ch is " <<ch;
 
 
-    else if (data=="0")
+         if(ch!="" && ch.length()==12)
+            {
+             if(ch==" F3 BD BB 97")
+              {
+              QString id="8888";
+              query.prepare("SELECT* FROM EMPLOYE WHERE id='"+id+"'  ");
+              qDebug() << query.exec();
+              while (query.next())
+              {
+              nom =query.value(1).toString();
+              prenom=query.value(2).toString();
 
-        ui->username->setText("OFF");
-    A.write_to_arduino("k");
+              }
+              qDebug() << nom;
+              qDebug() << prenom;
 
+              ui->username->setText(nom);
+              ui->motdepasse->setText(prenom);
+
+              QString message ="Bienvenue "+ nom;
+              QByteArray br = message.toUtf8();
+              A.write_to_arduino(br);
+              }
+
+
+             else if(ch==" A1 5B D2 1B")
+             {
+             QString id="545";
+             query.prepare("SELECT* FROM EMPLOYE WHERE id='"+id+"'  ");
+             qDebug() << query.exec();
+             while (query.next())
+             {
+             nom =query.value(1).toString();
+             prenom=query.value(2).toString();
+
+             }
+             qDebug() << nom;
+             qDebug() << prenom;
+
+             ui->username->setText(nom);
+             ui->motdepasse->setText(prenom);
+
+             QString message ="Bienvenue "+ nom;
+             QByteArray br = message.toUtf8();
+             A.write_to_arduino(br);
+             }
+
+             else
+             {
+                 QString message ="donne inaccessible";
+                 QByteArray br = message.toUtf8();
+                 A.write_to_arduino(br);
+                 QMessageBox::critical(nullptr,QObject::tr("login failed"),
+                                         QObject::tr("FAILED TO connected ..........  \n"
+                                                      "acces denied \n"
+
+                                                     "Click Cancel to exit."),QMessageBox::Cancel);
+             }
+
+            }
+
+         if(ch.length()==12)
+          {
+          ch="";
+          }
 }
+
 
   /*void MainWindow::on_Send_clicked()
 {

@@ -3,20 +3,11 @@
 
 #include <QDialog>
 
-#include"employe.h"
-#include<QIntValidator>
-#include<QObject>
-#include<QMainWindow>
-#include<QSqlQuery>
-#include <QDesktopServices>
+#include<QMessageBox>
+#include <QMainWindow>
 #include<QPrinter>
 #include<QPrintDialog>
-#include <QPrintPreviewDialog>
-#include <QPdfWriter>
-#include <QPainter>
-#include<QUrl>
-#include<QDialog>
-#include<smtp.h>
+#include"employe.h"
 #include"statistique.h"
 #include <QDebug>
 #include <QMessageBox>
@@ -40,6 +31,12 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QGuiApplication>
+//#include <QQmlApplicationEngine>
+#include <QTcpSocket>
+//#include <QQuickItem>
+#include <QSystemTrayIcon>
+#include <QIntValidator>
+#include<arduino.h>
 namespace Ui {
 class Dialog;
 }
@@ -53,13 +50,14 @@ public:
     ~Dialog();
 
 private slots:
+    void on_tableView_2_activated(const QModelIndex &index);
     void on_ajouter_clicked();
 
     void on_supprimer_clicked();
 
     void on_modifier_clicked();
 
-    void on_tableView_2_activated(const QModelIndex &index);
+    void on_tableView_2_clicked(const QModelIndex &index);
 
     void on_trieid_clicked();
 
@@ -71,10 +69,13 @@ private slots:
 
     void on_PDF_2_clicked();
 
+
 private:
     Ui::Dialog *ui;
-    statistique *s;
+
+
     Employe E;
+    statistique *s;
 };
 
 #endif // DIALOG_H
